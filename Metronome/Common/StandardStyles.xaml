@@ -1826,4 +1826,16 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <Style x:Key="MenuBar" TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+    
+    <Style x:Key="MenuButton" TargetType="Button">
+        <Setter Property="Height" Value="150" />
+        <Setter Property="Width" Value="240" />
+        <Setter Property="FontSize" Value="32" />
+    </Style>
 </ResourceDictionary>
