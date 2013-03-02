@@ -43,9 +43,22 @@
             <Ellipse Width="100" Height="100" Margin="10,0,10,0" Fill="Green" />
         </StackPanel>
         <TextBlock Grid.Row="4" Grid.ColumnSpan="2" Text="Click lights to add or remove emphasis" Foreground="White" FontSize="25" HorizontalAlignment="Center" Margin="0,10,0,0" />
-        <ToggleButton Content="START" FontSize="72"
+        <ToggleButton x:Name="btn_start" 
+                      Click="btn_start_Click"
+                      Content="START" FontSize="72"
                       Grid.Row="5" Grid.ColumnSpan="2" 
                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                       Margin="10"/>
+
+        <MediaElement x:Name="snd_on" Source="Assets/click.wav" 
+                  AutoPlay="False" IsLooping="False"
+                  Height="0" Width="0" />
+        <MediaElement x:Name="snd_off"
+                  AutoPlay="False" IsLooping="False"
+                  Height="0" Width="0" />
+        <MediaElement x:Name="snd_emphasized"
+                  AutoPlay="False" IsLooping="False" 
+                  Height="0" Width="0" />
     </Grid>
+    
 </Page>
