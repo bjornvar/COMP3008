@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -116,5 +117,35 @@ namespace MetronomeWPF
                 stc_lights.Children.Add(e);
             }
         }
+
+        private void LayoutChanged(object sender, SizeChangedEventArgs e)
+        {
+            int newHeight;
+            int newWidth;
+
+            newHeight = (int)stc_lights.ActualHeight;
+            newWidth = (int)((this.ActualWidth - 110) / stc_lights.Children.Count);
+
+            foreach (Ellipse ellipse in stc_lights.Children)
+            {
+                ellipse.Height = Math.Min(newHeight, newWidth) - 10;
+                ellipse.Width = Math.Min(newHeight, newWidth) - 10;
+            }
+        }
+
+        private void sld_volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            uint left = (uint) sld_volume.Value << 16;
+            uint right = (uint) sld_volume.Value;
+            uint total = left + right;
+
+            NativeMethods.WaveOutSetVolume(IntPtr.Zero, total);
+        }
+    }
+
+    static class NativeMethods
+    {
+        [DllImport("winmm.dll", EntryPoint = "waveOutSetVolume")]
+        public static extern int WaveOutSetVolume(IntPtr hwo, uint dwVolume);
     }
 }

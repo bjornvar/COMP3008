@@ -133,28 +133,28 @@
     <Style x:Key="OnLight" TargetType="Ellipse">
         <Setter Property="Width" Value="100" />
         <Setter Property="Height" Value="100" />
-        <Setter Property="Margin" Value="10, 0, 10, 0" />
+        <Setter Property="Margin" Value="5, 0, 5, 0" />
         <Setter Property="Fill" Value="Green" />
     </Style>
 
     <Style x:Key="OffLight" TargetType="Ellipse">
         <Setter Property="Width" Value="100" />
         <Setter Property="Height" Value="100" />
-        <Setter Property="Margin" Value="10, 0, 10, 0" />
+        <Setter Property="Margin" Value="5, 0, 5, 0" />
         <Setter Property="Fill" Value="#292929" />
     </Style>
 
     <Style x:Key="EmphasizedLight" TargetType="Ellipse">
         <Setter Property="Width" Value="100" />
         <Setter Property="Height" Value="100" />
-        <Setter Property="Margin" Value="10, 0, 10, 0" />
+        <Setter Property="Margin" Value="5, 0, 5, 0" />
         <Setter Property="Fill" Value="Red" />
     </Style>
 
     <Style x:Key="CurrentLight" TargetType="Ellipse">
         <Setter Property="Width" Value="100" />
         <Setter Property="Height" Value="100" />
-        <Setter Property="Margin" Value="10, 0, 10, 0" />
+        <Setter Property="Margin" Value="5, 0, 5, 0" />
         <Setter Property="Fill" Value="White" />
     </Style>
 </ResourceDictionary>

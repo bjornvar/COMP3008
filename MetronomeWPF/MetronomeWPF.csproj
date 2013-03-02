@@ -99,6 +99,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\help.png" />
+    <Resource Include="Assets\gear.png" />
+    <Resource Include="Assets\bell.png" />
+    <Resource Include="Assets\34.png" />
     <Content Include="Assets\click.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

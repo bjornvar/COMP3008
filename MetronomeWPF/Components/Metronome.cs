@@ -18,7 +18,7 @@ namespace MetronomeWPF.Components
         private Mutex currentBeatMutex;
 
         public Metronome()
-            : this(new TimeSignature(4, 4), 120) { }
+            : this(new TimeSignature(16, 4), 120) { }
 
         public Metronome(TimeSignature timeSignature, int tempo)
         {
