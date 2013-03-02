@@ -60,7 +60,7 @@ namespace Metronome
             metronome.StartMetronome(Tick);
         }
 
-        private async void Tick(Beat beat)
+        private void Tick(Beat beat)
         {
             MediaElement sound = null;
             switch (beat.BeatState)
@@ -77,7 +77,7 @@ namespace Metronome
             }
             if (null != sound)
             {
-                await sound.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, sound.Play);
+                sound.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, sound.Play);
             }
         }
 
