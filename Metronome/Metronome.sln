@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metronome", "Metronome.csproj", "{DF573235-3096-44A0-B3C9-B104E0FE4243}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetronomeWPF", "..\WpfApplication1\MetronomeWPF.csproj", "{D8E94060-725A-4B86-8E54-DE29235507C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,16 @@ Global
 		{DF573235-3096-44A0-B3C9-B104E0FE4243}.Release|x86.ActiveCfg = Release|x86
 		{DF573235-3096-44A0-B3C9-B104E0FE4243}.Release|x86.Build.0 = Release|x86
 		{DF573235-3096-44A0-B3C9-B104E0FE4243}.Release|x86.Deploy.0 = Release|x86
+		{D8E94060-725A-4B86-8E54-DE29235507C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8E94060-725A-4B86-8E54-DE29235507C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8E94060-725A-4B86-8E54-DE29235507C8}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{D8E94060-725A-4B86-8E54-DE29235507C8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D8E94060-725A-4B86-8E54-DE29235507C8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D8E94060-725A-4B86-8E54-DE29235507C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8E94060-725A-4B86-8E54-DE29235507C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8E94060-725A-4B86-8E54-DE29235507C8}.Release|ARM.ActiveCfg = Release|Any CPU
+		{D8E94060-725A-4B86-8E54-DE29235507C8}.Release|x64.ActiveCfg = Release|Any CPU
+		{D8E94060-725A-4B86-8E54-DE29235507C8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
