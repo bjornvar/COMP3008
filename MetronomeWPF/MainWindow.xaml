@@ -48,7 +48,8 @@
                     VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="100,0,0,0" />
         <TextBlock Grid.Row="4" Grid.ColumnSpan="2" Text="Click lights to add or remove emphasis" Foreground="White" FontSize="25" HorizontalAlignment="Center" Margin="0,10,0,0" />
         <ToggleButton x:Name="btn_start" Style="{StaticResource StartButton}"
-                      Click="btn_start_Click"
+                      Checked="btn_start_Checked"
+                      Unchecked="btn_start_Unchecked"
                       Content="START"
                       Grid.Row="5" Grid.ColumnSpan="2" />
     </Grid>

@@ -67,7 +67,7 @@ namespace MetronomeWPF.Components
          */
         public void StopMetronome()
         {
-            trigger.Change(Timeout.InfiniteTimeSpan, Timeout.InfiniteTimeSpan);
+            trigger.Dispose();
         }
 
         public void ChangeTimeSignature(TimeSignature newTimeSignature)

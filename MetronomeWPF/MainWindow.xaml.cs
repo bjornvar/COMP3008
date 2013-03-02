@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -45,9 +46,16 @@ namespace MetronomeWPF
             SetLights();
         }
 
-        private void btn_start_Click(object sender, RoutedEventArgs e)
+        private void btn_start_Checked(object sender, RoutedEventArgs e)
         {
             metronome.StartMetronome(Tick);
+            (sender as ToggleButton).Content = "STOP";
+        }
+
+        private void btn_start_Unchecked(object sender, RoutedEventArgs e)
+        {
+            metronome.StopMetronome();
+            (sender as ToggleButton).Content = "START";
         }
 
         private void Tick(Beat beat)
