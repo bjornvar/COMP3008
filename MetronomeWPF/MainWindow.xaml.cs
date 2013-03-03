@@ -203,6 +203,7 @@ namespace MetronomeWPF
         {
             metronome.StartMetronome();
             (sender as ToggleButton).Content = "STOP";
+            this.SetLights();
         }
 
         private void btn_start_Unchecked(object sender, RoutedEventArgs e)
@@ -255,7 +256,12 @@ namespace MetronomeWPF
 
         private void txt_tempo_TextChanged(object sender, TextChangedEventArgs e)
         {
-            metronome.ChangeTempo(Int32.Parse((sender as TextBox).Text));
+            try
+            {
+                int tempo = Int32.Parse((sender as TextBox).Text);
+                metronome.ChangeTempo(tempo);
+            }
+            catch (Exception) { }
         }
 
         private void sld_tempo_MouseDown(object sender, MouseButtonEventArgs e)
@@ -273,6 +279,24 @@ namespace MetronomeWPF
             // Stop the metronome
             metronome.StopMetronome();
             SetLights();
+        }
+
+        /// <summary>
+        ///     Handles all tempo increment and decrement buttons.
+        /// </summary>
+        /// <param name="sender">
+        ///     Inc/dec Button with Tag indicating value
+        /// </param>
+        private void TempoButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Button b = (sender as Button);
+                int tempo = Int32.Parse(txt_tempo.Text);
+                int change = Int32.Parse((string)b.Tag);
+                txt_tempo.Text = (tempo + change) + "";
+            }
+            catch (Exception) { }
         }
     }
 
