@@ -66,10 +66,10 @@ namespace MetronomeWPF
             if (null != sound)
             {
                 sound.Play();
-                
-                // Change lights (async)
-                this.Dispatcher.BeginInvoke(new Action<Beat>(AdvanceLights), new object[] { beat });
             }
+
+            // Change lights (async)
+            this.Dispatcher.BeginInvoke(new Action<Beat>(AdvanceLights), new object[] { beat });
         }
 
         /// <summary>
@@ -123,6 +123,7 @@ namespace MetronomeWPF
             foreach (Beat b in metronome.beats)
             {
                 Ellipse e = new Ellipse();
+                e.MouseLeftButtonUp += Light_Click;
                 e.Style = GetBeatStyle(b.BeatState);
                 stc_lights.Children.Add(e);
             }
@@ -237,6 +238,13 @@ namespace MetronomeWPF
             uint total = left + right;
 
             NativeMethods.WaveOutSetVolume(IntPtr.Zero, total);
+        }
+
+        private void Light_Click(object sender, EventArgs e)
+        {
+            int beat = stc_lights.Children.IndexOf(sender as Ellipse);
+            metronome.AdvanceBeatState(beat);
+            SetLights();
         }
     }
 

@@ -123,6 +123,22 @@ namespace MetronomeWPF.Components
         }
 
         /// <summary>
+        ///     Changes the BeatState of a given Beat to the next BeatState (cycles).
+        /// </summary>
+        /// <param name="beat">
+        ///     The index of the Beat to change
+        /// </param>
+        public void AdvanceBeatState(int beat)
+        {
+            Beat b = beats[beat];
+            b.BeatState++;
+            if ((int)b.BeatState == (Enum.GetValues(typeof(BeatState)).Length))
+            {
+                b.BeatState = (BeatState)0;
+            }
+        }
+
+        /// <summary>
         ///     Changes the tempo of the metronome.
         /// </summary>
         /// <param name="tempo">
