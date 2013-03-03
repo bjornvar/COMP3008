@@ -240,10 +240,38 @@ namespace MetronomeWPF
             NativeMethods.WaveOutSetVolume(IntPtr.Zero, total);
         }
 
+        /// <summary>
+        ///     Handles Light click. Advances Light to next BeatState.
+        /// </summary>
+        /// <param name="sender">
+        ///     The Ellipse that was clicked
+        /// </param>
         private void Light_Click(object sender, EventArgs e)
         {
             int beat = stc_lights.Children.IndexOf(sender as Ellipse);
             metronome.AdvanceBeatState(beat);
+            SetLights();
+        }
+
+        private void txt_tempo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            metronome.ChangeTempo(Int32.Parse((sender as TextBox).Text));
+        }
+
+        private void sld_tempo_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Determine whether to start the metronome again on mouseup
+            bool active = metronome.active;
+            (sender as Slider).PreviewMouseLeftButtonUp += (s, events) => 
+            {
+                if (active)
+                {
+                    metronome.StartMetronome();
+                }
+            };
+
+            // Stop the metronome
+            metronome.StopMetronome();
             SetLights();
         }
     }

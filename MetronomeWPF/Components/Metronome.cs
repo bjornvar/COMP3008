@@ -19,7 +19,7 @@ namespace MetronomeWPF.Components
 
         // Control related
         private Timer trigger;
-        private bool active;
+        public bool active { get; private set; }
         private int currentBeat;
         private Mutex currentBeatMutex;
 
