@@ -77,7 +77,7 @@ namespace MetronomeWPF.Components
             beats = new Beat[this.TimeSignature.BeatsPerBar];
             for (int i = 0; i < beats.Length; i++)
             {
-                beats[i] = new Beat(BeatState.On);
+                beats[i] = new Beat(i, BeatState.On);
             }
             beats[0].BeatState = BeatState.Emphasized;
         }

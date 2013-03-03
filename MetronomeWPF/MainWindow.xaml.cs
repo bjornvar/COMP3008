@@ -27,8 +27,6 @@ namespace MetronomeWPF
         private Metronome metronome;
         private Dictionary<BeatState, SoundPlayer> sounds;
 
-        private List<Ellipse> lights;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -77,13 +75,27 @@ namespace MetronomeWPF
             if (null != sound)
             {
                 sound.Play();
+                this.Dispatcher.InvokeAsync(() => 
+                {
+                    // Change light
+                    (stc_lights.Children[beat.BeatNumber] as Ellipse).Style = (Style)FindResource("CurrentLight");
+
+                    // Change back last 
+                    int last = beat.BeatNumber - 1;
+                    if (last < 0)
+                    {
+                        last = stc_lights.Children.Count - 1;
+                        (stc_lights.Children[beat.BeatNumber] as Ellipse).Style = GetBeatStyle(metronome.beats.ElementAt(last).BeatState);
+                    }
+                });
             }
         }
 
-        private void AdvanceTick()
-        {
-        }
-
+        /**
+         *  <summary>
+         *      Set the sound associated with a certain BeatState.
+         *  </summary>
+         */
         private void SetSound(SoundPlayer sound, BeatState beatType)
         {
             /* Remove if present */
@@ -95,29 +107,41 @@ namespace MetronomeWPF
             sounds.Add(beatType, sound);
         }
 
+        /**
+         *  <summary>
+         *      Creates lights based on beats per bar.
+         *  </summary>
+         */
         private void SetLights()
         {
             stc_lights.Children.Clear();
             foreach (Beat b in metronome.beats)
             {
                 Ellipse e = new Ellipse();
-                switch (b.BeatState)
-                {
-                    case BeatState.Off:
-                        e.Style = (Style)FindResource("OffLight");
-                        break;
-                    case BeatState.Emphasized:
-                        e.Style = (Style)FindResource("EmphasizedLight");
-                        break;
-                    case BeatState.On:
-                    default:
-                        e.Style = (Style)FindResource("OnLight");
-                        break;
-                }
+                e.Style = GetBeatStyle(b.BeatState);
                 stc_lights.Children.Add(e);
             }
         }
 
+        private Style GetBeatStyle(BeatState b)
+        {
+            switch (b)
+            {
+                case BeatState.Off:
+                    return (Style)FindResource("OffLight");
+                case BeatState.Emphasized:
+                    return (Style)FindResource("EmphasizedLight");
+                case BeatState.On:
+                default:
+                    return (Style)FindResource("OnLight");
+            }
+        }
+
+        /**
+         *  <summary>
+         *      Resizes components based on window sizes.
+         *  </summary>
+         */
         private void LayoutChanged(object sender, SizeChangedEventArgs e)
         {
             int newHeight;
@@ -133,6 +157,11 @@ namespace MetronomeWPF
             }
         }
 
+        /**
+         *  <summary>
+         *      Changes system volume for this application based on the GUI slider.
+         *  </summary>
+         */
         private void sld_volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             uint left = (uint) sld_volume.Value << 16;
@@ -143,6 +172,11 @@ namespace MetronomeWPF
         }
     }
 
+    /**
+     *  <summary>
+     *      Volume Control
+     *  </summary>
+     */
     static class NativeMethods
     {
         [DllImport("winmm.dll", EntryPoint = "waveOutSetVolume")]
