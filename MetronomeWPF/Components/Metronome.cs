@@ -7,42 +7,45 @@ using System.Windows.Threading;
 
 namespace MetronomeWPF.Components
 {
+    /// <summary>
+    ///     Metronome model with trigger.
+    /// </summary>
     class Metronome
     {
+        // Metronome settings
         public int Tempo { get; private set; }
         public Beat[] beats { get; private set; }
         private TimeSignature TimeSignature;
 
-        Timer trigger;
+        // Control related
+        private Timer trigger;
+        private bool active;
         private int currentBeat;
         private Mutex currentBeatMutex;
 
-        public Metronome()
-            : this(new TimeSignature(4, 4), 120) { }
+        /// <summary>
+        ///     Default constructor - creates a time signature 4,4 and tempo 120 bpm metronome.
+        /// </summary>
+        public Metronome(Action<Beat> tick)
+            : this(tick, new TimeSignature(4, 4)) { }
 
-        public Metronome(TimeSignature timeSignature, int tempo)
+        /// <summary>
+        ///     Creates a metronome based on the given <paramref name="timeSignature"/> and <paramref name="tempo"/>.
+        /// </summary>
+        /// <param name="timeSignature">
+        ///     The metronome's time signature
+        /// </param>
+        /// <param name="tempo">
+        ///     The metronome's tempo
+        /// </param>
+        public Metronome(Action<Beat> tick, TimeSignature timeSignature, int tempo = 120)
         {
             this.ChangeTimeSignature(timeSignature);
-            if (tempo > 0)
-            {
-                Tempo = tempo;
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException("tempo", "Tempo cannot be negative");
-            }
-        }
+            this.ChangeTempo(tempo);
 
-        /**
-         *  <summary>
-         *      Created sound threads at given interval.
-         *  </summary>
-         */
-        public void StartMetronome(Action<Beat> tick)
-        {
-            currentBeat = 0;
             currentBeatMutex = new Mutex(false);
-            
+
+            // Initialize inactive trigger (infinite wait time)
             trigger = new Timer(
                 (source) => 
                 {
@@ -56,22 +59,45 @@ namespace MetronomeWPF.Components
                     Beat b = beats[beat];
                     tick(b);
                 },
-                null,Timeout.InfiniteTimeSpan,Timeout.InfiniteTimeSpan);
+                null,
+                Timeout.InfiniteTimeSpan,
+                Timeout.InfiniteTimeSpan
+            );
+        }
+
+        /// <summary>
+        ///     Created sound threads at given interval.
+        /// </summary>
+        /// <param name="tick">
+        ///     The function to call for each tick
+        /// </param>
+        public void StartMetronome()
+        {      
+            currentBeat = 0;
+            active = true;
+
+            // Activate timer
             trigger.Change(TimeSpan.Zero, TimeSpan.FromMilliseconds(60000 / Tempo));
         }
 
-        /**
-         *  <summary>
-         *      Stop sound thread creation.
-         *  </summary>
-         */
+        /// <summary>
+        ///     Deactivates metronome trigger
+        /// </summary>
         public void StopMetronome()
         {
-            trigger.Dispose();
+            active = false;
+            trigger.Change(Timeout.InfiniteTimeSpan, Timeout.InfiniteTimeSpan);
         }
 
+        /// <summary>
+        ///     Change TimeSignature to of the metronome.
+        /// </summary>
+        /// <param name="newTimeSignature">
+        ///     The new TimeSignature
+        /// </param>
         public void ChangeTimeSignature(TimeSignature newTimeSignature)
         {
+
             this.TimeSignature = newTimeSignature;
 
             beats = new Beat[this.TimeSignature.BeatsPerBar];
@@ -82,9 +108,41 @@ namespace MetronomeWPF.Components
             beats[0].BeatState = BeatState.Emphasized;
         }
 
+        /// <summary>
+        ///     Changes the BeatState of a given Beat.
+        /// </summary>
+        /// <param name="beat">
+        ///     The index of the Beat to change
+        /// </param>
+        /// <param name="state">
+        ///     The BeatState to change to.
+        /// </param>
         public void ChangeBeatState(int beat, BeatState state)
         {
             beats[beat].BeatState = state;
+        }
+
+        /// <summary>
+        ///     Changes the tempo of the metronome.
+        /// </summary>
+        /// <param name="tempo">
+        ///     The new tempo of the metronome
+        /// </param>
+        public void ChangeTempo(int tempo)
+        {
+            if (tempo > 0)
+            {
+                Tempo = tempo;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("tempo", "Tempo cannot be negative");
+            }
+
+            if (active)
+            {
+                StartMetronome();
+            }
         }
     }
 }
