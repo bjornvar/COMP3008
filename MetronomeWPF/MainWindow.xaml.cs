@@ -82,11 +82,12 @@ namespace MetronomeWPF
 
                     // Change back last 
                     int last = beat.BeatNumber - 1;
+                    Console.WriteLine(beat.BeatNumber);
                     if (last < 0)
                     {
                         last = stc_lights.Children.Count - 1;
-                        (stc_lights.Children[beat.BeatNumber] as Ellipse).Style = GetBeatStyle(metronome.beats.ElementAt(last).BeatState);
                     }
+                    (stc_lights.Children[last] as Ellipse).Style = GetBeatStyle(metronome.beats.ElementAt(last).BeatState);
                 });
             }
         }
