@@ -295,6 +295,9 @@ namespace MetronomeWPF
                 int tempo = Int32.Parse(txt_tempo.Text);
                 int change = Int32.Parse((string)b.Tag);
                 txt_tempo.Text = (tempo + change) + "";
+
+                txt_tempo.Focus();
+                b.Focus();
             }
             catch (Exception) { }
         }
