@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MetronomeWPF.Views
 {
     /// <summary>
-    /// Interaction logic for Settings.xaml
+    /// Interaction logic for Tapping.xaml
     /// </summary>
-    public partial class Settings : Page
+    public partial class Tapping : Page
     {
-        public Settings()
+        public Tapping()
         {
             InitializeComponent();
         }

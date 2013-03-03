@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 namespace MetronomeWPF
 {
     using Components;
+    using Views;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -43,19 +44,6 @@ namespace MetronomeWPF
         private void InitializeView()
         {
             SetLights();
-        }
-
-        private void btn_start_Checked(object sender, RoutedEventArgs e)
-        {
-            metronome.StartMetronome(Tick);
-            (sender as ToggleButton).Content = "STOP";
-        }
-
-        private void btn_start_Unchecked(object sender, RoutedEventArgs e)
-        {
-            metronome.StopMetronome();
-            (sender as ToggleButton).Content = "START";
-            this.SetLights();
         }
 
         private void Tick(Beat beat)
@@ -152,6 +140,25 @@ namespace MetronomeWPF
                 default:
                     return (Style)FindResource("OnLight");
             }
+        }
+
+        private void btn_start_Checked(object sender, RoutedEventArgs e)
+        {
+            metronome.StartMetronome(Tick);
+            (sender as ToggleButton).Content = "STOP";
+        }
+
+        private void btn_start_Unchecked(object sender, RoutedEventArgs e)
+        {
+            metronome.StopMetronome();
+            (sender as ToggleButton).Content = "START";
+            this.SetLights();
+        }
+
+        private void btn_settings_Click(object sender, RoutedEventArgs e)
+        {
+            frm_tapping.Content = new Tapping();
+            frm_tapping.Visibility = System.Windows.Visibility.Visible;
         }
 
         /**
