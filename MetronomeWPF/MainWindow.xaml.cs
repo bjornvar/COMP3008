@@ -35,7 +35,7 @@ namespace MetronomeWPF
             /* Move? */
             sounds = new Dictionary<BeatState, SoundPlayer>();
             this.SetSound(new SoundPlayer("Assets/click.wav"), BeatState.On);
-            this.SetSound(new SoundPlayer("Assets/click.wav"), BeatState.Emphasized);
+            this.SetSound(new SoundPlayer("Assets/cow-bell.wav"), BeatState.Emphasized);
             
             this.InitializeView();
         }
@@ -55,6 +55,7 @@ namespace MetronomeWPF
         {
             metronome.StopMetronome();
             (sender as ToggleButton).Content = "START";
+            this.SetLights();
         }
 
         private void Tick(Beat beat)
@@ -124,6 +125,21 @@ namespace MetronomeWPF
             }
         }
 
+        private void ResizeLights()
+        {
+            int newHeight;
+            int newWidth;
+
+            newHeight = (int)stc_lights.ActualHeight;
+            newWidth = (int)((this.ActualWidth - 110) / stc_lights.Children.Count);
+
+            foreach (Ellipse ellipse in stc_lights.Children)
+            {
+                ellipse.Height = Math.Min(newHeight, newWidth) - 10;
+                ellipse.Width = Math.Min(newHeight, newWidth) - 10;
+            }
+        }
+
         private Style GetBeatStyle(BeatState b)
         {
             switch (b)
@@ -145,17 +161,7 @@ namespace MetronomeWPF
          */
         private void LayoutChanged(object sender, SizeChangedEventArgs e)
         {
-            int newHeight;
-            int newWidth;
-
-            newHeight = (int)stc_lights.ActualHeight;
-            newWidth = (int)((this.ActualWidth - 110) / stc_lights.Children.Count);
-
-            foreach (Ellipse ellipse in stc_lights.Children)
-            {
-                ellipse.Height = Math.Min(newHeight, newWidth) - 10;
-                ellipse.Width = Math.Min(newHeight, newWidth) - 10;
-            }
+            ResizeLights();
         }
 
         /**
