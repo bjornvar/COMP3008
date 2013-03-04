@@ -73,11 +73,14 @@
     <Compile Include="Views\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Settings.xaml.cs">
-      <DependentUpon>Settings.xaml</DependentUpon>
+    <Compile Include="Views\number_pad.xaml.cs">
+      <DependentUpon>number_pad.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tapping.xaml.cs">
       <DependentUpon>Tapping.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Time_Signature.xaml.cs">
+      <DependentUpon>Time_Signature.xaml</DependentUpon>
     </Compile>
     <Page Include="Common\StandardStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -102,11 +105,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Settings.xaml">
+    <Page Include="Views\number_pad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tapping.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Time_Signature.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,6 +162,7 @@
     <Content Include="Assets\block.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Views\Images\MetronomeIcon.png" />
     <Resource Include="Views\Images\34.png" />
     <Resource Include="Views\Images\bell.png" />
     <Resource Include="Views\Images\gear.png" />
