@@ -15,14 +15,15 @@ using System.Windows.Shapes;
 
 namespace MetronomeWPF.Views
 {
+
     /// <summary>
     /// Interaction logic for Settings.xaml
     /// </summary>
-    public partial class Settings : Page
+    public partial class Settings : Window
     {
         public Settings()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }

@@ -27,19 +27,24 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             
-            <Button Content="Tempo"
+            <Button x:Name="btn_tapping"
                     Grid.Column="0"
-                    Style="{StaticResource MenuButton}" />
-            
-            <Button <!--"Time signature" -->
-                    Grid.Column="1"
-                    Style="{StaticResource MenuButton}" >
+                    Style="{StaticResource MenuButton}"
+                    Click="btn_tapping_Click">
                 <Button.Background>
-                    <ImageBrush ImageSource="Assets/bell.png" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="Assets/tap.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
             
-            <Button
+            <Button x:Name="btn_time_sig"
+                    Grid.Column="1"
+                    Style="{StaticResource MenuButton}" >
+                <Button.Background>
+                    <ImageBrush ImageSource="Assets/34.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+            
+            <Button x:Name="btn_sounds"
                     Grid.Column="2"
                     Style="{StaticResource MenuButton}">
                 <Button.Background>
