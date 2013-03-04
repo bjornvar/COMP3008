@@ -22,7 +22,7 @@ namespace MetronomeWPF.Views
     {
         public Help()
         {
-            InitializeComponent();
+           InitializeComponent();
         }
     }
 }

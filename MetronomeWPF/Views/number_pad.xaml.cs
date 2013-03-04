@@ -15,15 +15,14 @@ using System.Windows.Shapes;
 
 namespace MetronomeWPF.Views
 {
-
     /// <summary>
-    /// Interaction logic for Settings.xaml
+    /// Interaction logic for number_pad.xaml
     /// </summary>
-    public partial class Settings : Window
+    public partial class number_pad : Page
     {
-        public Settings()
+        public number_pad()
         {
-            //InitializeComponent();
+            InitializeComponent();
         }
     }
 }

@@ -213,17 +213,20 @@ namespace MetronomeWPF
             this.SetLights();
         }
 
-        // Should bring user to the Settings page
+        // Settings Page
+        // Need to finish
         private void btn_settings_Click(object sender, RoutedEventArgs e)
         {
             //frm_settings.Content = new Settings();
             //frm_settings.Visibility = System.Windows.Visibility.Visible;
         }
 
-        // Should bring user to the Help page
+        // Help Page
+        // Need to finish
         private void btn_help_Click(object sender, RoutedEventArgs e)
         {
-
+            // frm_help.Content = new Help();
+            //frm_help.Visibility = System.Windows.Visibility.Visible;
         }
 
 
