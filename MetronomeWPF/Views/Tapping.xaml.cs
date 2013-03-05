@@ -39,5 +39,15 @@ namespace MetronomeWPF.Views
         {
             //MessageBox.Show("TAP");
         }
+
+        private void Rectangle_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            (sender as Rectangle).Opacity = 0.8;
+        }
+
+        private void Rectangle_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
+        {
+            (sender as Rectangle).Opacity = 0.0;
+        }
     }
 }
