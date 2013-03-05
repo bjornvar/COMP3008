@@ -31,9 +31,9 @@
                     Grid.Column="0"
                     Style="{StaticResource MenuButton}"
                     Click="btn_tapping_Click">
-           <!--     <Button.Background>
+                <Button.Background>
                      <ImageBrush ImageSource="Assets/tap.png" Stretch="Uniform"/>
-                </Button.Background> -->
+                </Button.Background>
             </Button>
             
             <Button x:Name="btn_time_sig"
