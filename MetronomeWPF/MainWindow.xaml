@@ -83,6 +83,7 @@
                 <RowDefinition Height="150" />
                 <RowDefinition Height="30" />
                 <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
             
             <Grid.Resources>
@@ -98,7 +99,7 @@
                     Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"
                     VerticalAlignment="Center" HorizontalAlignment="Stretch"
                     PreviewMouseLeftButtonDown="sld_tempo_MouseDown"
-                    Minimum="20" Maximum="240" Value="120" SmallChange="1" LargeChange="1" />
+                    Minimum="20" Maximum="240" Value="120" SmallChange="1" LargeChange="1" Margin="0,6" />
 
             <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom">
                 <Button x:Name="btn_dec5" Content="-5" Tag="-5"
@@ -116,6 +117,42 @@
                         Style="{StaticResource TempoButton}" 
                         Click="TempoButton_Click" Height="75" />
             </StackPanel>
+            <Grid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btn_quarter" Tag="1"
+                    Grid.Column="0"
+                    Style="{StaticResource TimingButton}">
+                    <Button.Content>
+                        <Image Source="Assets/quarter.png" Stretch="Uniform"/>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="btn_eights" Tag="2"
+                    Grid.Column="1"
+                    Style="{StaticResource TimingButton}">
+                    <Button.Content>
+                        <Image Source="Assets/eighths.png" Stretch="Uniform"/>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="btn_triplets" Tag="3"
+                    Grid.Column="2"
+                    Style="{StaticResource TimingButton}">
+                    <Button.Content>
+                        <Image Source="Assets/triplet.png" Stretch="Uniform"/>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="btn_sixteenths" Tag="4"
+                    Grid.Column="3"
+                    Style="{StaticResource TimingButton}">
+                    <Button.Content>
+                        <Image Source="Assets/sixteenths.png" Stretch="Uniform"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
         </Grid>
         
         <Slider x:Name="sld_volume" ValueChanged="sld_volume_ValueChanged"
