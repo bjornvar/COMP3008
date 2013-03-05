@@ -210,6 +210,7 @@ namespace MetronomeWPF
         private void btn_start_Unchecked(object sender, RoutedEventArgs e)
         {
             metronome.StopMetronome();
+            metronome.ResetMetronome();
             (sender as ToggleButton).Content = "START";
             this.SetLights();
         }

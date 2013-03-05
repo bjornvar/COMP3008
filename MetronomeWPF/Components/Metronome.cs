@@ -66,14 +66,19 @@ namespace MetronomeWPF.Components
         }
 
         /// <summary>
+        ///     Calling this function will make the metronome start from beat one next time it is
+        ///     started. If the metronome is active, it will restart from the beat one.
+        /// </summary>
+        public void ResetMetronome()
+        {
+            currentBeat = 0;
+        }
+
+        /// <summary>
         ///     Created sound threads at given interval.
         /// </summary>
-        /// <param name="tick">
-        ///     The function to call for each tick
-        /// </param>
         public void StartMetronome()
-        {      
-            currentBeat = 0;
+        {
             active = true;
 
             // Activate timer

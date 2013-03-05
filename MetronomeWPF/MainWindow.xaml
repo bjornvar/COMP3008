@@ -80,7 +80,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition Height="150" />
                 <RowDefinition Height="30" />
                 <RowDefinition />
             </Grid.RowDefinitions>
@@ -103,7 +103,7 @@
             <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom">
                 <Button x:Name="btn_dec5" Content="-5" Tag="-5"
                         Style="{StaticResource TempoButton}" 
-                        Click="TempoButton_Click" Height="67" />
+                        Click="TempoButton_Click" Height="75" />
                 <Button x:Name="btn_dec1" Content="-1" Tag="-1"
                         Style="{StaticResource TempoButton}" 
                         Click="TempoButton_Click" Height="75" />
@@ -111,7 +111,7 @@
             <StackPanel Grid.Column="3" Grid.Row="0" VerticalAlignment="Bottom">
                 <Button x:Name="btn_inc5" Content="+5" Tag="5"
                         Style="{StaticResource TempoButton}"
-                        Click="TempoButton_Click" Height="67" />
+                        Click="TempoButton_Click" Height="75" />
                 <Button x:Name="btn_inc1" Content="+1" Tag="1"
                         Style="{StaticResource TempoButton}" 
                         Click="TempoButton_Click" Height="75" />
