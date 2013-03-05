@@ -66,14 +66,19 @@ namespace MetronomeWPF.Components
         }
 
         /// <summary>
+        ///     Calling this function will make the metronome start from beat one next time it is
+        ///     started. If the metronome is active, it will restart from the beat one.
+        /// </summary>
+        public void ResetMetronome()
+        {
+            currentBeat = 0;
+        }
+
+        /// <summary>
         ///     Created sound threads at given interval.
         /// </summary>
-        /// <param name="tick">
-        ///     The function to call for each tick
-        /// </param>
         public void StartMetronome()
-        {      
-            currentBeat = 0;
+        {
             active = true;
 
             // Activate timer
@@ -159,6 +164,26 @@ namespace MetronomeWPF.Components
             {
                 StartMetronome();
             }
+        }
+
+        /// <summary>
+        ///     Enables smooth live tempo change. This function should be called by the Tick
+        ///     function if there is a change in tempo. The trigger will be reset and will
+        ///     therefore send a new Tick.
+        ///     This use of this function for a Tick should be mutually exclusive with the standard
+        ///     handling of tick (sound etc.).
+        /// </summary>
+        /// <param name="tempo">
+        ///     The tempo to change to.
+        /// </param>
+        public void ChangeTempoLive(int tempo)
+        {
+            // Step back one beat
+            if (--currentBeat < 0)
+            {
+                currentBeat = beats.Length - 1;
+            }
+            ChangeTempo(tempo);
         }
     }
 }

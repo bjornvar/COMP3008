@@ -8,7 +8,7 @@
 	  Title="Tapping">
       <!-- PreviewMouseLeftButtonDown="Page_PreviewMouseLeftButtonDown_1" -->
 
-    <Grid Background="Black" Opacity="0.7">
+    <Grid Background="Black" Opacity="0.7" Width="1280" Height="800">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="3*" />
@@ -21,21 +21,13 @@
         </Grid.RowDefinitions>
         
         <Image Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="/MetronomeWPF;component/Assets/tap.png" Stretch="Fill" />
-<<<<<<< HEAD
-        <Button Content="Yes" HorizontalAlignment="Left" Margin="-35,-41,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_2" Height="104" Width="104" Grid.ColumnSpan="2">
-=======
-        <Button Grid.ColumnSpan="2" Content="Yes" HorizontalAlignment="Stretch" Margin="-83,-59,217,200" Grid.Row="1" VerticalAlignment="Stretch" Click="Button_Click_2" >
->>>>>>> origin/Cowan
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="800" Grid.RowSpan="3" Stroke="Black" VerticalAlignment="Top" Width="1280" Opacity="0.0" Grid.ColumnSpan="3" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown_1" MouseLeftButtonUp="Rectangle_MouseLeftButtonUp_1"/>
+        <Button Content="Yes" HorizontalAlignment="Stretch" Margin="10,10,105,335" VerticalAlignment="Stretch" Click="Button_Click_1" Grid.Row="1" >
             <Button.Template>
                 <ControlTemplate>
                     <Image Source="/MetronomeWPF;component/Assets/xIcon.png"/>
                 </ControlTemplate>
             </Button.Template>
         </Button>
-<<<<<<< HEAD
-        <Rectangle Grid.Column="1" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="180" Grid.RowSpan="3" Stroke="Black" VerticalAlignment="Top" Width="180" Grid.ColumnSpan="3" Opacity="0.0"/>
-=======
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="321" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="314" Opacity="0.0" Grid.ColumnSpan="2"/>
->>>>>>> origin/Cowan
     </Grid>
 </Page>
