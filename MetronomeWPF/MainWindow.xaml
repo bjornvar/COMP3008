@@ -132,15 +132,8 @@
                       Unchecked="btn_start_Unchecked"
                       Content="START"
                       Grid.Row="4" Grid.ColumnSpan="2" />
-        
-        <!-- Frames on top of content to display views and tap layer -->
-        <Frame x:Name="frm_view" 
-               HorizontalAlignment="Left" Height="532" Margin="97,10,0,0" VerticalAlignment="Top" Width="1037" Grid.RowSpan="4" Grid.Row="1" 
-               Visibility="Hidden" NavigationUIVisibility="Hidden" Background="White" />
-        <Frame x:Name="frm_tapping" 
-               Width="{Binding ElementName=win_main, Path=Width}" 
-               Height="{Binding ElementName=win_main, Path=Height}"
-               Grid.ColumnSpan="2" Grid.RowSpan="5" Visibility="Hidden" NavigationUIVisibility="Hidden"/>
+
+        <!-- These buttons are linked to the speaker icon and will show it either on or off later on-->
         <Button x:Name="btn_speaker"
                     Grid.Column="1"
                 Grid.Row="2"
@@ -164,5 +157,14 @@
                 </Button.Background>
             </Button>
         </Grid>
+
+        <!-- Frames on top of content to display views and tap layer -->
+        <Frame x:Name="frm_view" 
+               HorizontalAlignment="Left" Height="532" Margin="97,10,0,0" VerticalAlignment="Top" Width="1037" Grid.RowSpan="4" Grid.Row="1" 
+               Visibility="Hidden" NavigationUIVisibility="Hidden" Background="White" />
+        <Frame x:Name="frm_tapping" 
+               Width="{Binding ElementName=win_main, Path=Width}" 
+               Height="{Binding ElementName=win_main, Path=Height}"
+               Grid.ColumnSpan="2" Grid.RowSpan="5" Visibility="Hidden" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
