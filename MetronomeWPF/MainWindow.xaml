@@ -4,6 +4,10 @@
         xmlns:helpers="clr-namespace:MetronomeWPF.Helpers"
         Title="Metronome" MinHeight="600" MinWidth="520" Height="800" Width="1280" Style="{StaticResource Main}" SizeChanged="LayoutChanged" 
         x:Name="win_main">
+    <Window.Resources>
+        <Image x:Key="Mute" Source="Assets/mute_icon.png" Height="150" Width="90"/>
+        <Image x:Key="Sound" Source="Assets/sound_icon.png" Height="150" Width="90"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="150" MinHeight="75" />
@@ -121,8 +125,14 @@
         <Slider x:Name="sld_volume" ValueChanged="sld_volume_ValueChanged"
                 Grid.Row="1" Grid.Column="1" Grid.RowSpan="1" 
                 Orientation="Vertical" HorizontalAlignment="Center" Margin="0,10,0,10" Maximum="65535" Value="65535" SmallChange="16" />
-        
-        
+        <Button x:Name="btn_mute"
+                    Grid.Column="1"
+                    Style="{StaticResource MenuButton}"
+                    Click="toggleMute" Margin="0,0,0,140" Grid.Row="2" Grid.RowSpan="3" RenderTransformOrigin="0.32,0.52">
+            <DynamicResourceExtension ResourceKey="Mute"/>
+        </Button>
+
+
         <StackPanel x:Name="stc_lights" Grid.Row="2"
                     Orientation="Horizontal"
                     VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,0,0,0" />
@@ -141,13 +151,5 @@
                Width="{Binding ElementName=win_main, Path=Width}" 
                Height="{Binding ElementName=win_main, Path=Height}"
                Grid.ColumnSpan="2" Grid.RowSpan="5" Visibility="Hidden" NavigationUIVisibility="Hidden"/>
-        <Button x:Name="btn_sound"
-                    Grid.Column="1"
-                    Grid.Row="2"
-                    Style="{StaticResource MenuButton}">
-            <Button.Background>
-                <ImageBrush ImageSource="Assets/sound_icon.png" Stretch="Uniform"/>
-            </Button.Background>
-        </Button>
     </Grid>
 </Window>

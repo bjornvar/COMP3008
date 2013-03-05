@@ -263,13 +263,38 @@ namespace MetronomeWPF
         ///
         private void sld_volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            uint left = (uint) sld_volume.Value << 16; // Unsigned int with 16 MST bit being left and 16 LSB right
+            uint right = (uint) sld_volume.Value;
+            uint total = left + right;
+
             //uint left = (uint) sld_volume.Value << 16;
            // uint right = (uint) sld_volume.Value;
            // uint total = left + right;
 
            // SoundVolume.WaveOutSetVolume(IntPtr.Zero, total);
         }
+        /// <summary>
+        ///     Toggles system volume to on or off. 
+        /// </summary>
+        ///
+        private void toggleMute(object sender, RoutedEventArgs e)
+        {
+            if (btn_mute.Content == FindResource("Mute"))
+            {
+                SoundVolume.WaveOutSetVolume(IntPtr.Zero, 0);
+                btn_mute.Content = FindResource("Sound");
+            }
+            else
+            {
+                uint left = (uint)sld_volume.Value << 16; // Unsigned int with 16 MST bit being left and 16 LSB right
+                uint right = (uint)sld_volume.Value;
+                uint total = left + right;
 
+                SoundVolume.WaveOutSetVolume(IntPtr.Zero, total);
+                btn_mute.Content = FindResource("Mute");
+            }
+            
+        }
         /// <summary>
         ///     Handles Light click. Advances Light to next BeatState.
         /// </summary>
