@@ -20,9 +20,15 @@ namespace MetronomeWPF.Views
     /// </summary>
     public partial class Tapping : Page
     {
+<<<<<<< HEAD
+
+
+        public Tapping()
+=======
         private Frame f = null;
 
         public Tapping(Frame frame)
+>>>>>>> origin/Cowan
         {
             InitializeComponent();
             f = frame;

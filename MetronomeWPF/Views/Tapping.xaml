@@ -21,13 +21,21 @@
         </Grid.RowDefinitions>
         
         <Image Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="/MetronomeWPF;component/Assets/tap.png" Stretch="Fill" />
+<<<<<<< HEAD
+        <Button Content="Yes" HorizontalAlignment="Left" Margin="-35,-41,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_2" Height="104" Width="104" Grid.ColumnSpan="2">
+=======
         <Button Grid.ColumnSpan="2" Content="Yes" HorizontalAlignment="Stretch" Margin="-83,-59,217,200" Grid.Row="1" VerticalAlignment="Stretch" Click="Button_Click_2" >
+>>>>>>> origin/Cowan
             <Button.Template>
                 <ControlTemplate>
-                    <Image Source="/MetronomeWPF;component/Assets/tap.png"/>
+                    <Image Source="/MetronomeWPF;component/Assets/xIcon.png"/>
                 </ControlTemplate>
             </Button.Template>
         </Button>
+<<<<<<< HEAD
+        <Rectangle Grid.Column="1" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="180" Grid.RowSpan="3" Stroke="Black" VerticalAlignment="Top" Width="180" Grid.ColumnSpan="3" Opacity="0.0"/>
+=======
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="321" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="314" Opacity="0.0" Grid.ColumnSpan="2"/>
+>>>>>>> origin/Cowan
     </Grid>
 </Page>
