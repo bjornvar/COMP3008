@@ -140,6 +140,6 @@
         <Frame x:Name="frm_tapping" 
                Width="{Binding ElementName=win_main, Path=Width}" 
                Height="{Binding ElementName=win_main, Path=Height}"
-               Grid.ColumnSpan="2" Grid.RowSpan="5" Visibility="Hidden" />
+               Grid.ColumnSpan="2" Grid.RowSpan="5" Visibility="Hidden" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

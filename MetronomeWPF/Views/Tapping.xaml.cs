@@ -24,5 +24,15 @@ namespace MetronomeWPF.Views
         {
             InitializeComponent();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("No");
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Visibility = System.Windows.Visibility.Hidden;
+        }
     }
 }
