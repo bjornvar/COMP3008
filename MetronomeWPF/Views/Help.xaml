@@ -7,26 +7,29 @@
 	  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
 	  Title="Help">
 
-    <Grid>
+    <Grid Background="Black" Opacity="0.4">
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="150" MinHeight="75" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="0*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+        <Grid Grid.Row="0" Grid.ColumnSpan="1" Margin="0,0,0,0.2" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <Button
-                    Grid.Column="0"
+                    Grid.Column="0" Grid.Row="0"
                     Style="{StaticResource MenuButton}" >
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/tap.png" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="/MetronomeWPF;component/Assets/tap.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
 
@@ -34,7 +37,7 @@
                     Grid.Column="1"
                     Style="{StaticResource MenuButton}" >
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/34.png" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="/MetronomeWPF;component/Assets/34.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
 
@@ -42,7 +45,7 @@
                     Grid.Column="2"
                     Style="{StaticResource MenuButton}">
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/bell.png" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="/MetronomeWPF;component/Assets/bell.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
 
@@ -50,7 +53,7 @@
                     Grid.Column="3"
                     Style="{StaticResource MenuButton}">
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/gear.png" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="/MetronomeWPF;component/Assets/gear.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
 
@@ -58,7 +61,7 @@
                     Grid.Column="4"
                     Style="{StaticResource MenuButton}">
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/MetronomeIcon.png" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="/MetronomeWPF;component/Assets/MetronomeIcon.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
         </Grid>

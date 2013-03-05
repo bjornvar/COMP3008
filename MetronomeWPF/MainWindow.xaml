@@ -60,10 +60,11 @@
                     <ImageBrush ImageSource="Assets/gear.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            
-            <Button
+
+            <Button x:Name="btn_help"
                     Grid.Column="4"
-                    Style="{StaticResource MenuButton}">
+                    Style="{StaticResource MenuButton}"
+                    Click="btn_help_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="Assets/help.png" Stretch="Uniform"/>
                 </Button.Background>

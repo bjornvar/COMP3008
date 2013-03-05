@@ -147,6 +147,7 @@
     <Content Include="Assets\cow-bell.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Assets\MetronomeIcon.png" />
     <Content Include="Assets\stick-low.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -162,14 +163,6 @@
     <Content Include="Assets\block.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Views\Images\MetronomeIcon.png" />
-    <Resource Include="Views\Images\34.png" />
-    <Resource Include="Views\Images\bell.png" />
-    <Resource Include="Views\Images\gear.png" />
-    <Resource Include="Views\Images\help.png" />
-    <Resource Include="Views\Images\mute_icon.png" />
-    <Resource Include="Views\Images\sound_icon.png" />
-    <Resource Include="Views\Images\tap.png" />
     <Resource Include="Assets\tap.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
