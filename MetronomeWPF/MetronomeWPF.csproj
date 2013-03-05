@@ -146,14 +146,20 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Tap Icon.png" />
+    <Resource Include="Assets\X mark.png" />
+    <Resource Include="Assets\xIcon.png" />
     <Resource Include="Assets\checkIcon.png" />
+    <Resource Include="Assets\Bell Icon.png" />
+    <Resource Include="Assets\CheckMark.png" />
     <Content Include="Assets\cow-bell.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Assets\xIcon.png" />
     <Resource Include="Assets\MetronomeIcon.png" />
     <Resource Include="Assets\mute_icon.png" />
     <Resource Include="Assets\sound_icon.png" />
+    <Resource Include="Assets\LIcon.png" />
+    <Resource Include="Assets\RIcon.png" />
     <Content Include="Assets\stick-low.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

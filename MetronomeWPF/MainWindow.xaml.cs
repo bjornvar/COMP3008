@@ -253,11 +253,7 @@ namespace MetronomeWPF
         ///
         private void sld_volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            //uint left = (uint) sld_volume.Value << 16;
-           // uint right = (uint) sld_volume.Value;
-           // uint total = left + right;
-
-           // SoundVolume.WaveOutSetVolume(IntPtr.Zero, total);
+           SoundVolume.WaveOutSetVolume(IntPtr.Zero, (uint)(sender as Slider).Value);
         }
 
         /// <summary>
