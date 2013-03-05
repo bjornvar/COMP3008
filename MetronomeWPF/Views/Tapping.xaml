@@ -6,6 +6,7 @@
       mc:Ignorable="d" 
       VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
 	  Title="Tapping">
+      <!-- PreviewMouseLeftButtonDown="Page_PreviewMouseLeftButtonDown_1" -->
 
     <Grid Background="Black" Opacity="0.7">
         <Grid.ColumnDefinitions>
@@ -20,13 +21,13 @@
         </Grid.RowDefinitions>
         
         <Image Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="/MetronomeWPF;component/Assets/tap.png" Stretch="Fill" />
-        <Button Grid.ColumnSpan="2" Content="Yes" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="46" Height="39" Click="Button_Click_2">
+        <Button Grid.ColumnSpan="2" Content="Yes" HorizontalAlignment="Stretch" Margin="-83,-59,217,200" Grid.Row="1" VerticalAlignment="Stretch" Click="Button_Click_2" >
             <Button.Template>
                 <ControlTemplate>
                     <Image Source="/MetronomeWPF;component/Assets/tap.png"/>
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Grid.ColumnSpan="2" Content="No" HorizontalAlignment="Left" Margin="10,65,0,0" Grid.Row="1" VerticalAlignment="Top" Width="101" Height="39" Click="Button_Click_1"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="321" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="314" Opacity="0.0" Grid.ColumnSpan="2"/>
     </Grid>
 </Page>
