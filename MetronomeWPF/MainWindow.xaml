@@ -27,7 +27,7 @@
             </Grid.ColumnDefinitions>
             
             <Button x:Name="btn_tapping"
-                    Content="Tapping"
+                    Content=""
                     Grid.Column="0"
                     Style="{StaticResource MenuButton}"
                     Click="btn_tapping_Click">
