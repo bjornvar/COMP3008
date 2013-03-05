@@ -19,6 +19,7 @@ namespace MetronomeWPF
 {
     using Components;
     using Views;
+    using Helpers;
 
     /// <summary>
     ///     View / Controller
@@ -217,8 +218,8 @@ namespace MetronomeWPF
         // Need to finish
         private void btn_settings_Click(object sender, RoutedEventArgs e)
         {
-            //frm_settings.Content = new Settings();
-            //frm_settings.Visibility = System.Windows.Visibility.Visible;
+            //frm_tapping.Content = new Settings();
+            //frm_tapping.Visibility = System.Windows.Visibility.Visible;
         }
 
         // Help Page
@@ -252,11 +253,11 @@ namespace MetronomeWPF
         ///
         private void sld_volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            uint left = (uint) sld_volume.Value << 16;
-            uint right = (uint) sld_volume.Value;
-            uint total = left + right;
+            //uint left = (uint) sld_volume.Value << 16;
+           // uint right = (uint) sld_volume.Value;
+           // uint total = left + right;
 
-            NativeMethods.WaveOutSetVolume(IntPtr.Zero, total);
+           // SoundVolume.WaveOutSetVolume(IntPtr.Zero, total);
         }
 
         /// <summary>
@@ -319,14 +320,5 @@ namespace MetronomeWPF
             }
             catch (Exception) { }
         }
-    }
-
-    /// <summary>
-    ///     Volume Control
-    /// </summary>
-    static class NativeMethods
-    {
-        [DllImport("winmm.dll", EntryPoint = "waveOutSetVolume")]
-        public static extern int WaveOutSetVolume(IntPtr hwo, uint dwVolume);
     }
 }
