@@ -20,13 +20,13 @@
         </Grid.RowDefinitions>
         
         <Image Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="/MetronomeWPF;component/Assets/tap.png" Stretch="Fill" />
-        <Button Grid.ColumnSpan="2" Content="Yes" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="46" Height="39" Click="Button_Click_2">
+        <Button Content="Yes" HorizontalAlignment="Left" Margin="-188,-71,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_2" Height="104" Width="104">
             <Button.Template>
                 <ControlTemplate>
-                    <Image Source="/MetronomeWPF;component/Assets/tap.png"/>
+                    <Image Source="/MetronomeWPF;component/Assets/xIcon.png"/>
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Grid.ColumnSpan="2" Content="No" HorizontalAlignment="Left" Margin="10,65,0,0" Grid.Row="1" VerticalAlignment="Top" Width="101" Height="39" Click="Button_Click_1"/>
+        <Rectangle Grid.Column="1" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="180" Grid.RowSpan="3" Stroke="Black" VerticalAlignment="Top" Width="180" Grid.ColumnSpan="3" Opacity="0.0"/>
     </Grid>
 </Page>

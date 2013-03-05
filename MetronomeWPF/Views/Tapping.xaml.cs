@@ -20,6 +20,8 @@ namespace MetronomeWPF.Views
     /// </summary>
     public partial class Tapping : Page
     {
+
+
         public Tapping()
         {
             InitializeComponent();
