@@ -4,7 +4,6 @@
         xmlns:helpers="clr-namespace:MetronomeWPF.Helpers"
         Title="Metronome" MinHeight="600" MinWidth="520" Height="800" Width="1280" Style="{StaticResource Main}" SizeChanged="LayoutChanged" 
         x:Name="win_main">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="150" MinHeight="75" />
@@ -28,12 +27,13 @@
             </Grid.ColumnDefinitions>
             
             <Button x:Name="btn_tapping"
+                    Content="Tapping"
                     Grid.Column="0"
                     Style="{StaticResource MenuButton}"
                     Click="btn_tapping_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="Assets/tap.png" Stretch="Uniform"/>
-                </Button.Background>
+           <!--     <Button.Background>
+                     <ImageBrush ImageSource="Assets/tap.png" Stretch="Uniform"/>
+                </Button.Background> -->
             </Button>
             
             <Button x:Name="btn_time_sig"

@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace MetronomeWPF.Views
 {
     /// <summary>
-    /// Interaction logic for number_pad.xaml
+    /// Interaction logic for Settings.xaml
     /// </summary>
-    public partial class number_pad : Page
+    public partial class Settings : Page
     {
-        public number_pad()
+        public Settings()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
