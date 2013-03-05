@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         
         <Image Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="/MetronomeWPF;component/Assets/tap.png" Stretch="Fill" />
-        <Button Content="Yes" HorizontalAlignment="Left" Margin="-188,-71,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_2" Height="104" Width="104">
+        <Button Content="Yes" HorizontalAlignment="Left" Margin="-35,-41,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_2" Height="104" Width="104" Grid.ColumnSpan="2">
             <Button.Template>
                 <ControlTemplate>
                     <Image Source="/MetronomeWPF;component/Assets/xIcon.png"/>
