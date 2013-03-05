@@ -251,7 +251,7 @@ namespace MetronomeWPF
         ///
         private void sld_volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            uint left = (uint) sld_volume.Value << 16;
+            uint left = (uint) sld_volume.Value << 16; // Unsigned int with 16 MST bit being left and 16 LSB right
             uint right = (uint) sld_volume.Value;
             uint total = left + right;
 
