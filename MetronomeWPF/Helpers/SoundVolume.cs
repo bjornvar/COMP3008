@@ -51,27 +51,39 @@ namespace MetronomeWPF.Helpers
 
         public static void MuteRight()
         {
-            rightMuted = true; 
-            WaveOutSetVolume(IntPtr.Zero, total);
+            if (soundMuted == false)
+            {
+                rightMuted = true;
+                WaveOutSetVolume(IntPtr.Zero, total);
+            }
                          
         }
 
         public static void UnmuteRight()
         {
-            rightMuted = false;
-            WaveOutSetVolume(IntPtr.Zero, total);
+            if (soundMuted == true)
+            {
+                rightMuted = false;
+                WaveOutSetVolume(IntPtr.Zero, total);
+            }
         }
 
         public static void MuteLeft()
         {
-            leftMuted = true;
-            WaveOutSetVolume(IntPtr.Zero, total);
+            if (soundMuted == false)
+            {
+                leftMuted = true;
+                WaveOutSetVolume(IntPtr.Zero, total);
+            }
         }
 
         public static void UnmuteLeft()
         {
-            leftMuted = false;
-            WaveOutSetVolume(IntPtr.Zero, total);
+            if (soundMuted == false)
+            {
+                leftMuted = false;
+                WaveOutSetVolume(IntPtr.Zero, total);
+            }
         }
     }
 }
