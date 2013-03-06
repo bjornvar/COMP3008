@@ -169,6 +169,8 @@
     <Resource Include="Assets\sound_icon.png" />
     <Resource Include="Assets\LIcon.png" />
     <Resource Include="Assets\RIcon.png" />
+    <Resource Include="Assets\MuteLIcon.png" />
+    <Resource Include="Assets\MuteRIcon.png" />
     <Resource Include="Assets\eighths.png" />
     <Resource Include="Assets\sixteenths.png" />
     <Resource Include="Assets\quarter.png" />

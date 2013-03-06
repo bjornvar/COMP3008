@@ -293,76 +293,115 @@ namespace MetronomeWPF
             ResizeLights();
         }
 
+// ===================================VOLUME CONTROL ===================================
         /// <summary>
         ///     Changes system volume for this application based on the GUI slider.
         /// </summary>
         ///
         private void sld_volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-           SoundVolume.WaveOutSetVolume(IntPtr.Zero, (uint)(sender as Slider).Value);
+            SoundVolume.Unmute();   // Unmute the sound because the slider has changed
+                     
+            // Adjust the sound according to the Left and Right buttons
+            // If they are toggled muted or not
+            /*if (btn_left.Content.Equals(FindResource("Mute_L")))
+                SoundVolume.MuteLeft();
+            else
+                SoundVolume.UnmuteLeft();
+            
+            if (btn_right.Content.Equals(FindResource("Mute_R")))
+                SoundVolume.MuteRight();
+            else
+                SoundVolume.UnmuteRight();
+
+            btn_mute.Content = FindResource("Sound");*/
+            
+            // CANNOT CAPTURE THE BUTTONS
+            
+            // Set the sound volume according to the Slider
+            SoundVolume.WaveOutSetVolume(IntPtr.Zero, (uint)(sender as Slider).Value);
         }
 
         /// <summary>
-        ///      Changes the system volume for this application based on the GUI 
+        ///     Toggles system volume to on or off. 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_sound_Click(object sender, EventArgs e)
+        ///
+        private void toggleMute(object sender, RoutedEventArgs e)
         {
-            try
+            if (btn_mute.Content.Equals(FindResource("Sound")))
             {
-                if (SoundVolume.soundMuted == true)
-                {
-                    SoundVolume.Unmute();
-                    // Then set the picture to the "Assets/speaker_icon.png"
-                }
-                else
-                {
-                    SoundVolume.Mute();
-                    // Then set picture to the "Assets/mute_icon.png"
-                    // how?
-                    //(sender as Bu = "Assets/mute_icon.png";
-                }
+                SoundVolume.Mute();
+                btn_mute.Content = FindResource("Mute");
             }
-            catch (Exception) { }
-             
-        }        
+            else
+            {
+                SoundVolume.SetVolume((uint)sld_volume.Value);
+                SoundVolume.Unmute();
+                if (btn_left.Content.Equals(FindResource("Mute_L")))                
+                    SoundVolume.MuteLeft();                
+                else
+                    SoundVolume.UnmuteLeft();
+
+                if (btn_right.Content.Equals(FindResource("Mute_R")))
+                    SoundVolume.MuteRight();
+                else
+                    SoundVolume.UnmuteRight();
+
+                btn_mute.Content = FindResource("Sound");
+            }
+        }
 
         /// <summary>
         ///     Mutes the left system volume for this application based GUI
         /// </summary>
         /// <param name="sender"></</param>
         /// <param name="e"></</param>
-        private void btn_left_Click(object sender, EventArgs e)
-        {   
-                if (SoundVolume.leftMuted == false)
+        private void btn_left_Click(object sender, RoutedEventArgs e)
+        {
+            if (btn_left.Content.Equals(FindResource("L")))
+            {
+                if (btn_mute.Content.Equals(FindResource("Sound")))
                 {
                     SoundVolume.MuteLeft();
-                    // Then set picture to the "Assets/MuteLIcon.png"
+                    //SoundVolume.SetVolume((uint)sld_volume.Value);
                 }
-                else
-                {
-                    SoundVolume.UnmuteLeft();
-                    // Change the picture to "Assets/LIcon.png"
-                }
-        }
-
-        /// <summary>
-        ///     Mutes the rght system volume for this application based GUI
-        /// </summary>
-        /// <param name="sender"></</param>
-        /// <param name="e"></</param>
-        private void btn_right_Click(object sender, EventArgs e)
-        {
-            if (SoundVolume.rightMuted == false)
-            {
-                SoundVolume.MuteRight();
-                // Then set picture to the "Assets/MuteRIcon.png"
+                btn_left.Content = FindResource("Mute_L");
             }
             else
             {
-                SoundVolume.UnmuteRight();
-                // Then set picture to the "Assets/RIcon.png"
+                if (btn_mute.Content.Equals(FindResource("Sound")))
+                {
+                    SoundVolume.UnmuteLeft();
+                    SoundVolume.SetVolume((uint)sld_volume.Value);
+                }
+                btn_left.Content = FindResource("L");
+            }
+        }
+
+        /// <summary>
+        ///     Mutes the right system volume for this application based GUI
+        /// </summary>
+        /// <param name="sender"></</param>
+        /// <param name="e"></</param>
+        private void btn_right_Click(object sender, RoutedEventArgs e)
+        {
+            if (btn_right.Content.Equals(FindResource("R")))
+            {
+                if (btn_mute.Content.Equals(FindResource("Sound")))
+                {
+                    SoundVolume.MuteRight();
+                    //SoundVolume.SetVolume((uint)sld_volume.Value);
+                }
+                btn_right.Content = FindResource("Mute_R");
+            }
+            else
+            {
+                if (btn_mute.Content.Equals(FindResource("Sound")))
+                {
+                    SoundVolume.UnmuteRight();
+                    //SoundVolume.SetVolume((uint)sld_volume.Value);
+                }                
+                btn_right.Content = FindResource("R");
             }
         }
 
