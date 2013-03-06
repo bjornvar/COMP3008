@@ -30,6 +30,9 @@ namespace MetronomeWPF
         private Metronome metronome;
         private Dictionary<BeatState, SoundPlayer> sounds;
 
+        private ColourSelector colourSelector;
+        private Dictionary<BeatState, Color> colourMap;
+
         private int TempoChangeIntent = 0;
         private int countInValue = 0;
 
@@ -37,6 +40,27 @@ namespace MetronomeWPF
         {
             InitializeComponent();
             this.metronome = new Metronome(Tick);
+
+            this.colourMap = new Dictionary<BeatState, Color>();
+            this.colourSelector = new ColourSelector(frm_view);
+            colourMap.Add(BeatState.Emphasized, (Color)ColorConverter.ConvertFromString("Red"));
+            colourMap.Add(BeatState.On, (Color)ColorConverter.ConvertFromString("Green"));
+            colourMap.Add(BeatState.Off, Color.FromRgb(128, 128, 128));
+            this.colourSelector.IsVisibleChanged += 
+                (sender, e) =>
+                {
+                    colourMap.Remove(BeatState.Emphasized);
+                    colourMap.Add(BeatState.Emphasized, colourSelector.Emphasized);
+
+                    colourMap.Remove(BeatState.On);
+                    colourMap.Add(BeatState.On, colourSelector.On);
+
+                    colourMap.Remove(BeatState.Off);
+                    colourMap.Add(BeatState.Off, colourSelector.Off);
+
+                    SetLights();
+                    ResizeLights();
+                };
 
             // Set sounds. Move code?
             sounds = new Dictionary<BeatState, SoundPlayer>();
@@ -110,16 +134,24 @@ namespace MetronomeWPF
         /// </param>
         private void AdvanceLights(Beat beat)
         {
-            // Change light
-            (stc_lights.Children[beat.BeatNumber] as Ellipse).Style = (Style)FindResource("CurrentLight");
-
-            // Change previous light back to its default Style
-            int last = beat.BeatNumber - 1;
-            if (last < 0)
+            try
             {
-                last = stc_lights.Children.Count - 1;
+                // Change light
+                (stc_lights.Children[beat.BeatNumber] as Ellipse).Style = (Style)FindResource("CurrentLight");
+                (stc_lights.Children[beat.BeatNumber] as Ellipse).Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+
+                // Change previous light back to its default Style
+                int last = beat.BeatNumber - 1;
+                if (last < 0)
+                {
+                    last = stc_lights.Children.Count - 1;
+                }
+                (stc_lights.Children[last] as Ellipse).Style = GetBeatStyle(metronome.beats.ElementAt(last).BeatState);
+                Color c;
+                colourMap.TryGetValue(metronome.beats.ElementAt(last).BeatState, out c);
+                (stc_lights.Children[last] as Ellipse).Fill = new SolidColorBrush(c);
             }
-            (stc_lights.Children[last] as Ellipse).Style = GetBeatStyle(metronome.beats.ElementAt(last).BeatState);
+            catch (Exception) { }
         }
 
         /// <summary>
@@ -154,6 +186,9 @@ namespace MetronomeWPF
                 Ellipse e = new Ellipse();
                 e.MouseLeftButtonUp += Light_Click;
                 e.Style = GetBeatStyle(b.BeatState);
+                Color c;
+                colourMap.TryGetValue(b.BeatState, out c);
+                e.Fill = new SolidColorBrush(c);
                 stc_lights.Children.Add(e);
             }
         }
@@ -233,6 +268,7 @@ namespace MetronomeWPF
             metronome.StartMetronome();
             (sender as ToggleButton).Content = "STOP";
             this.SetLights();
+            ResizeLights();
         }
 
         private void btn_start_Unchecked(object sender, RoutedEventArgs e)
@@ -241,14 +277,14 @@ namespace MetronomeWPF
             metronome.ResetMetronome();
             (sender as ToggleButton).Content = "START";
             this.SetLights();
+            ResizeLights();
         }
 
         // Settings Page
         // Need to finish
         private void btn_settings_Click(object sender, RoutedEventArgs e)
         {
-            //frm_tapping.Content = new Settings();
-            //frm_tapping.Visibility = System.Windows.Visibility.Visible;
+            colourSelector.Show();
         }
 
         // Help Page
@@ -281,11 +317,71 @@ namespace MetronomeWPF
         ///
         private void sld_volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            //uint left = (uint) sld_volume.Value << 16;
-           // uint right = (uint) sld_volume.Value;
-           // uint total = left + right;
+           SoundVolume.WaveOutSetVolume(IntPtr.Zero, (uint)(sender as Slider).Value);
+        }
 
-           // SoundVolume.WaveOutSetVolume(IntPtr.Zero, total);
+        /// <summary>
+        ///      Changes the system volume for this application based on the GUI 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_sound_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (SoundVolume.soundMuted == true)
+                {
+                    SoundVolume.Unmute();
+                    // Then set the picture to the "Assets/speaker_icon.png"
+                }
+                else
+                {
+                    SoundVolume.Mute();
+                    // Then set picture to the "Assets/mute_icon.png"
+                    // how?
+                    //(sender as Bu = "Assets/mute_icon.png";
+                }
+            }
+            catch (Exception) { }
+             
+        }        
+
+        /// <summary>
+        ///     Mutes the left system volume for this application based GUI
+        /// </summary>
+        /// <param name="sender"></</param>
+        /// <param name="e"></</param>
+        private void btn_left_Click(object sender, EventArgs e)
+        {   
+                if (SoundVolume.leftMuted == false)
+                {
+                    SoundVolume.MuteLeft();
+                    // Then set picture to the "Assets/MuteLIcon.png"
+                }
+                else
+                {
+                    SoundVolume.UnmuteLeft();
+                    // Change the picture to "Assets/LIcon.png"
+                }
+        }
+
+        /// <summary>
+        ///     Mutes the rght system volume for this application based GUI
+        /// </summary>
+        /// <param name="sender"></</param>
+        /// <param name="e"></</param>
+        private void btn_right_Click(object sender, EventArgs e)
+        {
+            if (SoundVolume.rightMuted == false)
+            {
+                SoundVolume.MuteRight();
+                // Then set picture to the "Assets/MuteRIcon.png"
+            }
+            else
+            {
+                SoundVolume.UnmuteRight();
+                // Then set picture to the "Assets/RIcon.png"
+            }
         }
 
         /// <summary>
@@ -299,6 +395,7 @@ namespace MetronomeWPF
             int beat = stc_lights.Children.IndexOf(sender as Ellipse);
             metronome.AdvanceBeatState(beat);
             SetLights();
+            ResizeLights();
         }
 
         private void txt_tempo_TextChanged(object sender, TextChangedEventArgs e)
@@ -370,6 +467,22 @@ namespace MetronomeWPF
             txt_count.Text = (countInValue == 0) ? "OFF" : "" + countInValue;
 
             metronome.counts = countInValue;
+        }
+
+        private void TimingButtonClick(object sender, EventArgs e)
+        {
+            bool active = metronome.active;
+
+            metronome.StopMetronome();
+            metronome.ResetMetronome();
+            metronome.Subdivide(Int32.Parse((sender as Button).Tag.ToString()));
+            SetLights();
+            ResizeLights();
+
+            if (active)
+            {
+                metronome.StartMetronome();
+            }
         }
     }
 }

@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 namespace MetronomeWPF.Views
 {
     using Components;
+
     /// <summary>
     /// Interaction logic for Tapping.xaml
     /// </summary>
@@ -38,10 +39,6 @@ namespace MetronomeWPF.Views
         {
             InitializeComponent();
             
-            frame = f;
-            metro = m;
-            tempoSlider = t;
-
             frame = f;
             metro = m;
             tempoSlider = t;
