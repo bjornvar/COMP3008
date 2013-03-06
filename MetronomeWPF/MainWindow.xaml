@@ -144,6 +144,7 @@
             </Button.Background>
         </Button>
         <Grid Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3">
+            <!-- Left Side Volume-->
             <Button x:Name="btn_left"
                     Style="{StaticResource MenuButton}" Margin="0,0,50,0"
                     Click="btn_left_Click">
@@ -152,6 +153,7 @@
                 </Button.Background>
             </Button>
 
+            <!-- Right Side Volume-->
             <Button x:Name="btn_right"
                     Style="{StaticResource MenuButton}" Margin="50,0,0,0"
                     Click="btn_right_Click">
