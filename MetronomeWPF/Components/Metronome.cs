@@ -14,6 +14,7 @@ namespace MetronomeWPF.Components
     {
         // Metronome settings
         public int Tempo { get; private set; }
+        private int subdivided = 1;
         public Beat[] beats { get; private set; }
         private TimeSignature TimeSignature;
 
@@ -183,7 +184,42 @@ namespace MetronomeWPF.Components
             {
                 currentBeat = beats.Length - 1;
             }
-            ChangeTempo(tempo);
+            ChangeTempo(tempo * subdivided);
+        }
+
+        /// <summary>
+        ///     Subdivides beats into groups of <paramref name="subdivision"/> parts. If
+        ///     <paramref name="subdivision"/> is 1, only one group will be created.
+        /// </summary>
+        /// <param name="subdivision">
+        ///     Subdivision size
+        /// </param>
+        public void Subdivide(int subdivision)
+        {
+            beats = new Beat[TimeSignature.BeatsPerBar * subdivision];
+
+            for (int i = 0; i < beats.Length; i++)
+            {
+                if ((i % subdivision) == 0)
+                {
+                    if (1 == subdivision && i > 0)
+                    {
+                        beats[i] = new Beat(i, BeatState.On);
+                    }
+                    else
+                    {
+                        beats[i] = new Beat(i, BeatState.Emphasized);
+                    }
+                }
+                else
+                {
+                    beats[i] = new Beat(i, BeatState.On);
+                }
+            }
+
+
+            ChangeTempo(Tempo/this.subdivided * subdivision);
+            subdivided = subdivision;
         }
     }
 }

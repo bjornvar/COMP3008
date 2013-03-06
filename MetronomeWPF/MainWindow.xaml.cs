@@ -92,16 +92,20 @@ namespace MetronomeWPF
         /// </param>
         private void AdvanceLights(Beat beat)
         {
-            // Change light
-            (stc_lights.Children[beat.BeatNumber] as Ellipse).Style = (Style)FindResource("CurrentLight");
-
-            // Change previous light back to its default Style
-            int last = beat.BeatNumber - 1;
-            if (last < 0)
+            try
             {
-                last = stc_lights.Children.Count - 1;
+                // Change light
+                (stc_lights.Children[beat.BeatNumber] as Ellipse).Style = (Style)FindResource("CurrentLight");
+
+                // Change previous light back to its default Style
+                int last = beat.BeatNumber - 1;
+                if (last < 0)
+                {
+                    last = stc_lights.Children.Count - 1;
+                }
+                (stc_lights.Children[last] as Ellipse).Style = GetBeatStyle(metronome.beats.ElementAt(last).BeatState);
             }
-            (stc_lights.Children[last] as Ellipse).Style = GetBeatStyle(metronome.beats.ElementAt(last).BeatState);
+            catch (Exception) { }
         }
 
         /// <summary>
@@ -215,6 +219,7 @@ namespace MetronomeWPF
             metronome.StartMetronome();
             (sender as ToggleButton).Content = "STOP";
             this.SetLights();
+            ResizeLights();
         }
 
         private void btn_start_Unchecked(object sender, RoutedEventArgs e)
@@ -223,6 +228,7 @@ namespace MetronomeWPF
             metronome.ResetMetronome();
             (sender as ToggleButton).Content = "START";
             this.SetLights();
+            ResizeLights();
         }
 
         // Settings Page
@@ -361,6 +367,7 @@ namespace MetronomeWPF
             int beat = stc_lights.Children.IndexOf(sender as Ellipse);
             metronome.AdvanceBeatState(beat);
             SetLights();
+            ResizeLights();
         }
 
         private void txt_tempo_TextChanged(object sender, TextChangedEventArgs e)
@@ -414,5 +421,20 @@ namespace MetronomeWPF
             catch (Exception) { }
         }
 
+        private void TimingButtonClick(object sender, EventArgs e)
+        {
+            bool active = metronome.active;
+
+            metronome.StopMetronome();
+            metronome.ResetMetronome();
+            metronome.Subdivide(Int32.Parse((sender as Button).Tag.ToString()));
+            SetLights();
+            ResizeLights();
+
+            if (active)
+            {
+                metronome.StartMetronome();
+            }
+        }
     }
 }

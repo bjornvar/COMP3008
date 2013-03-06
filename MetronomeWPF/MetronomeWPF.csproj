@@ -149,6 +149,7 @@
     <Resource Include="Assets\Tap Icon.png" />
     <Resource Include="Assets\X mark.png" />
     <Resource Include="Assets\xIcon.png" />
+    <Resource Include="Assets\triplet.png" />
     <Resource Include="Assets\checkIcon.png" />
     <Resource Include="Assets\Bell Icon.png" />
     <Resource Include="Assets\CheckMark.png" />
@@ -162,6 +163,9 @@
     <Resource Include="Assets\RIcon.png" />
     <Resource Include="Assets\MuteLIcon.png" />
     <Resource Include="Assets\MuteRIcon.png" />
+    <Resource Include="Assets\eighths.png" />
+    <Resource Include="Assets\sixteenths.png" />
+    <Resource Include="Assets\quarter.png" />
     <Content Include="Assets\stick-low.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
