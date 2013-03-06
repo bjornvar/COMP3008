@@ -250,4 +250,10 @@
         <Setter Property="Margin" Value="5, 0, 5, 0" />
         <Setter Property="Fill" Value="White" />
     </Style>
+    
+    <Style x:Key="ColourSelection" TargetType="Ellipse">
+        <Setter Property="Margin" Value="3" />
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Width" Value="50" />
+    </Style>
 </ResourceDictionary>
