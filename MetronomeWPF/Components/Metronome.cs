@@ -10,7 +10,7 @@ namespace MetronomeWPF.Components
     /// <summary>
     ///     Metronome model with trigger.
     /// </summary>
-    class Metronome
+    public class Metronome
     {
         // Metronome settings
         public int Tempo { get; private set; }
