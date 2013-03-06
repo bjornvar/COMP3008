@@ -16,7 +16,7 @@ namespace MetronomeWPF.Helpers
         {
             get
             {
-                return (leftMuted ? 0 : (left << 16)) + (rightMuted ? 0 : right);
+                return (leftMuted ? 0 : left) + (rightMuted ? 0 : (right << 16));
             }
         }
 
@@ -28,10 +28,10 @@ namespace MetronomeWPF.Helpers
         public static extern int WaveOutSetVolume(IntPtr hwo, uint dwVolume);
 
         // Public functions
-        public static void SetVolume(int value)
+        public static void SetVolume(uint value)
         {
-            left = (uint)value;
-            right = (uint)value;
+            left  = value;
+            right = value;
 
             WaveOutSetVolume(IntPtr.Zero, total);
             Console.WriteLine("Setting up the sound volume to: " + total);

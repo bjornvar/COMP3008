@@ -160,6 +160,8 @@
     <Resource Include="Assets\sound_icon.png" />
     <Resource Include="Assets\LIcon.png" />
     <Resource Include="Assets\RIcon.png" />
+    <Resource Include="Assets\MuteLIcon.png" />
+    <Resource Include="Assets\MuteRIcon.png" />
     <Content Include="Assets\stick-low.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

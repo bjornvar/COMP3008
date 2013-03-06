@@ -257,6 +257,16 @@ namespace MetronomeWPF
             ResizeLights();
         }
 
+// ===================================VOLUME CONTROL ===================================
+        /// <summary>
+        ///     Changes system volume for this application based on the GUI slider.
+        /// </summary>
+        ///
+        private void sld_volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            SoundVolume.WaveOutSetVolume(IntPtr.Zero, (uint)(sender as Slider).Value);
+        }
+
         /// <summary>
         ///     Toggles system volume to on or off. 
         /// </summary>
@@ -270,20 +280,13 @@ namespace MetronomeWPF
             }
             else
             {
-                SoundVolume.left = (uint)sld_volume.Value << 16; // Unsigned int with 16 MST bit being left and 16 LSB right
-                SoundVolume.right = (uint)sld_volume.Value;
+                // Unsigned int with 16 MST bit being left and 16 LSB right
+                //SoundVolume.left = (uint)sld_volume.Value << 16; 
+                //SoundVolume.right = (uint)sld_volume.Value;
+                SoundVolume.SetVolume((uint)sld_volume.Value);
                 SoundVolume.Unmute();
                 btn_mute.Content = FindResource("Sound");
             }
-        }
-
-        /// <summary>
-        ///     Changes system volume for this application based on the GUI slider.
-        /// </summary>
-        ///
-        private void sld_volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            SoundVolume.WaveOutSetVolume(IntPtr.Zero, (uint)(sender as Slider).Value);
         }
 
         /// <summary>
@@ -291,17 +294,19 @@ namespace MetronomeWPF
         /// </summary>
         /// <param name="sender"></</param>
         /// <param name="e"></</param>
-        private void btn_left_Click(object sender, EventArgs e)
+        private void btn_left_Click(object sender, RoutedEventArgs e)
         {
-            if (SoundVolume.leftMuted == false)
+            if (btn_left.Content.Equals(FindResource("L")))
             {
                 SoundVolume.MuteLeft();
-                // Then set picture to the "Assets/MuteLIcon.png"
+                SoundVolume.SetVolume((uint)sld_volume.Value);
+                btn_left.Content = FindResource("Mute_L");
             }
             else
             {
                 SoundVolume.UnmuteLeft();
-                // Change the picture to "Assets/LIcon.png"
+                SoundVolume.SetVolume((uint)sld_volume.Value);
+                btn_left.Content = FindResource("L");
             }
         }
 
@@ -310,17 +315,19 @@ namespace MetronomeWPF
         /// </summary>
         /// <param name="sender"></</param>
         /// <param name="e"></</param>
-        private void btn_right_Click(object sender, EventArgs e)
+        private void btn_right_Click(object sender, RoutedEventArgs e)
         {
-            if (SoundVolume.rightMuted == false)
+            if (btn_right.Content.Equals(FindResource("R")))
             {
                 SoundVolume.MuteRight();
-                // Then set picture to the "Assets/MuteRIcon.png"
+                SoundVolume.SetVolume((uint)sld_volume.Value);
+                btn_right.Content = FindResource("Mute_R");
             }
             else
             {
                 SoundVolume.UnmuteRight();
-                // Then set picture to the "Assets/RIcon.png"
+                SoundVolume.SetVolume((uint)sld_volume.Value);
+                btn_right.Content = FindResource("R");
             }
         }
 
