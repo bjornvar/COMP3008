@@ -26,7 +26,7 @@ namespace MetronomeWPF.Views
         double[] beats = null;
         int index = 0;
         int beatNum = 0;
-        DateTime recent;
+        DateTime lastTap;
 
         public Tapping(Frame frame)
         {
@@ -55,19 +55,26 @@ namespace MetronomeWPF.Views
             //refreshing the recent on every click.
             // Need to store the differences in time, not the times themselves, then calculate the bpm
             DateTime temp = DateTime.Now;
-            
-            int sec = temp.Second;
-            double mil = (double)temp.Millisecond / 1000;
 
-            beats[index % beatNum] = (sec + mil) % 60;
+            if (index > 0)
+            {
+                TimeSpan diff = temp.Subtract(lastTap);
+                double total = diff.TotalMilliseconds;
+                if (total > 5000)
+                {
+                    beats = new double[beatNum];
+                    index = 0;
+                }
+                else
+                    beats[(index - 1) % beatNum] = total;
+            }
 
-            
-            
-            bpm = calculateBPM(index % beatNum);
+            lastTap = temp;
+            index++;
 
-            index++;     
+            bpm = calculateBPM();
 
-            MessageBox.Show(""+bpm);
+            tempoBox.Text = "" + bpm;
             (sender as Rectangle).Opacity = 0.8;
         }
 
@@ -76,27 +83,22 @@ namespace MetronomeWPF.Views
             (sender as Rectangle).Opacity = 0.0;
         }
 
-        private int calculateBPM(int startIn)
+        private int calculateBPM()
         {
             double total = 0;
-            double cur = beats[startIn];
             int taps = 0;
-            for (int x = 1; x < beats.Length; x++)
+            for (int x = 0; x < beats.Length; x++)
             {
-                int ind = startIn - x;
-                if (ind < 0) ind = beatNum + ind;
-                double prev = beats[ind];
-                if(prev > 0 && cur > 0)
+                if (beats[x] > 0)
                 {
-                    total += cur - prev;
+                    total += beats[x] / (1000 * 60);
                     taps++;
                 }
-                cur = prev;
             }
             if (taps == 0)
                 return 0;
             else
-                return Convert.ToInt32(total / taps);
+                return Convert.ToInt32(taps / total);
         }
     }
 }
