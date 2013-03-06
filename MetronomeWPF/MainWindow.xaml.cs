@@ -271,7 +271,7 @@ namespace MetronomeWPF
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_speaker_Click(object sender, EventArgs e)
+        private void btn_sound_Click(object sender, EventArgs e)
         {
             try
             {
@@ -297,7 +297,7 @@ namespace MetronomeWPF
         /// </summary>
         /// <param name="sender"></</param>
         /// <param name="e"></</param>
-        private void left_Sound(object sender, EventArgs e)
+        private void btn_left_Click(object sender, EventArgs e)
         {   
                 if (SoundVolume.leftMuted == false)
                 {
@@ -316,7 +316,7 @@ namespace MetronomeWPF
         /// </summary>
         /// <param name="sender"></</param>
         /// <param name="e"></</param>
-        private void right_Sound(object sender, EventArgs e)
+        private void btn_right_Click(object sender, EventArgs e)
         {
             if (SoundVolume.rightMuted == false)
             {

@@ -34,6 +34,7 @@ namespace MetronomeWPF.Helpers
             right = (uint)value;
 
             WaveOutSetVolume(IntPtr.Zero, total);
+            Console.WriteLine("Setting up the sound volume to: " + total);
         }
 
         public static void Mute()

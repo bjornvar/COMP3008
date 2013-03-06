@@ -135,23 +135,26 @@
 
         <!-- These buttons are linked to the speaker icon and will show it either on or off later on-->
         <Button x:Name="btn_speaker"
-                    Grid.Column="1"
+                Grid.Column="1"
                 Grid.Row="2"
-                    Style="{StaticResource MenuButton}" Click="btn_speaker_Click">
+                Style="{StaticResource MenuButton}" 
+                Click="btn_sound_Click">
             <Button.Background>
                 <ImageBrush ImageSource="Assets/sound_icon.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
         <Grid Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3">
             <Button x:Name="btn_left"
-                    Style="{StaticResource MenuButton}" Margin="0,0,50,0">
+                    Style="{StaticResource MenuButton}" Margin="0,0,50,0"
+                    Click="btn_left_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="Assets/LIcon.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
 
             <Button x:Name="btn_right"
-                    Style="{StaticResource MenuButton}" Margin="50,0,0,0">
+                    Style="{StaticResource MenuButton}" Margin="50,0,0,0"
+                    Click="btn_right_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="Assets/RIcon.png" Stretch="Uniform"/>
                 </Button.Background>
@@ -166,13 +169,5 @@
                Width="{Binding ElementName=win_main, Path=Width}" 
                Height="{Binding ElementName=win_main, Path=Height}"
                Grid.ColumnSpan="2" Grid.RowSpan="5" Visibility="Hidden" NavigationUIVisibility="Hidden"/>
-        <Button x:Name="btn_sound"
-                    Grid.Column="1"
-                    Grid.Row="2"
-                    Style="{StaticResource MenuButton}">
-            <Button.Background>
-                <ImageBrush ImageSource="Assets/sound_icon.png" Stretch="Uniform"/>
-            </Button.Background>
-        </Button>
     </Grid>
 </Window>
