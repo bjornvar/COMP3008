@@ -64,6 +64,7 @@ namespace MetronomeWPF
             sounds = new Dictionary<BeatState, SoundPlayer>();
             this.SetSound(new SoundPlayer("Assets/click.wav"), BeatState.On);
             this.SetSound(new SoundPlayer("Assets/cow-bell.wav"), BeatState.Emphasized);
+
             
             this.InitializeView();
         }
@@ -304,22 +305,23 @@ namespace MetronomeWPF
                      
             // Adjust the sound according to the Left and Right buttons
             // If they are toggled muted or not
-            /*if (btn_left.Content.Equals(FindResource("Mute_L")))
+            if (btn_left != null && btn_left.Content.Equals(FindResource("Mute_L")))
                 SoundVolume.MuteLeft();
             else
                 SoundVolume.UnmuteLeft();
             
-            if (btn_right.Content.Equals(FindResource("Mute_R")))
+            if (btn_right != null && btn_right.Content.Equals(FindResource("Mute_R")))
                 SoundVolume.MuteRight();
             else
                 SoundVolume.UnmuteRight();
 
-            btn_mute.Content = FindResource("Sound");*/
+            if (btn_mute != null)
+                btn_mute.Content = FindResource("Sound");
             
             // CANNOT CAPTURE THE BUTTONS
             
             // Set the sound volume according to the Slider
-            SoundVolume.WaveOutSetVolume(IntPtr.Zero, (uint)(sender as Slider).Value);
+            SoundVolume.SetVolume((uint)(sender as Slider).Value);
         }
 
         /// <summary>
@@ -328,6 +330,7 @@ namespace MetronomeWPF
         ///
         private void toggleMute(object sender, RoutedEventArgs e)
         {
+            
             if (btn_mute.Content.Equals(FindResource("Sound")))
             {
                 SoundVolume.Mute();
@@ -390,7 +393,6 @@ namespace MetronomeWPF
                 if (btn_mute.Content.Equals(FindResource("Sound")))
                 {
                     SoundVolume.MuteRight();
-                    //SoundVolume.SetVolume((uint)sld_volume.Value);
                 }
                 btn_right.Content = FindResource("Mute_R");
             }
@@ -399,7 +401,6 @@ namespace MetronomeWPF
                 if (btn_mute.Content.Equals(FindResource("Sound")))
                 {
                     SoundVolume.UnmuteRight();
-                    //SoundVolume.SetVolume((uint)sld_volume.Value);
                 }                
                 btn_right.Content = FindResource("R");
             }
