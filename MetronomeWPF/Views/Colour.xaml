@@ -33,17 +33,17 @@
         
         <Ellipse Grid.Column="0" Grid.Row="1" Fill="Blue"
                  Style="{StaticResource ResourceKey=ColourSelection}" />
-        <Ellipse Grid.Column="0" Grid.Row="2" Height="50" Width="50" Fill="Green"
+        <Ellipse Grid.Column="0" Grid.Row="2" Fill="Green"
                  Style="{StaticResource ResourceKey=ColourSelection}" />
-        <Ellipse Grid.Column="0" Grid.Row="3" Height="50" Width="50" Fill="Yellow"
+        <Ellipse Grid.Column="0" Grid.Row="3" Fill="Yellow"
                  Style="{StaticResource ResourceKey=ColourSelection}" />
-        <Ellipse Grid.Column="0" Grid.Row="4" Height="50" Width="50" Fill="Orange"
+        <Ellipse Grid.Column="0" Grid.Row="4" Fill="Orange"
                  Style="{StaticResource ResourceKey=ColourSelection}" />
-        <Ellipse Grid.Column="0" Grid.Row="5" Height="50" Width="50" Fill="Red"
+        <Ellipse Grid.Column="0" Grid.Row="5" Fill="Red"
                  Style="{StaticResource ResourceKey=ColourSelection}" />
-        <Ellipse Grid.Column="0" Grid.Row="6" Height="50" Width="50" Fill="Purple"
+        <Ellipse Grid.Column="0" Grid.Row="6" Fill="Purple"
                  Style="{StaticResource ResourceKey=ColourSelection}" />
-        <Ellipse Grid.Column="0" Grid.Row="7" Height="50" Width="50" Fill="#808080"
+        <Ellipse Grid.Column="0" Grid.Row="7" Fill="#808080"
                  Style="{StaticResource ResourceKey=ColourSelection}" />
 
         <TextBlock Text="Empasized" 
@@ -51,46 +51,115 @@
                    HorizontalAlignment="Center"
                    Foreground="White" FontSize="16" 
                    Margin="3" />
-        <RadioButton GroupName="Emphasized" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="Emphasized" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="Emphasized" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="Emphasized" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="Emphasized" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="Emphasized" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="Emphasized" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <RadioButton GroupName="Empasized" Tag="Blue" 
+                     Checked="ColourSelected"
+                     Grid.Column="1" Grid.Row="1" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="Empasized" Tag="Green" 
+                     Checked="ColourSelected"
+                     Grid.Column="1" Grid.Row="2" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="Empasized" Tag="Yellow" 
+                     Checked="ColourSelected"
+                     Grid.Column="1" Grid.Row="3" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="Empasized" Tag="Orange" 
+                     Checked="ColourSelected"
+                     Grid.Column="1" Grid.Row="4" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="Empasized" Tag="Red" 
+                     Checked="ColourSelected"
+                     Grid.Column="1" Grid.Row="5" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="Empasized" Tag="Purple" 
+                     Checked="ColourSelected"
+                     Grid.Column="1" Grid.Row="6" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="Empasized" Tag="Gray" 
+                     Checked="ColourSelected"
+                     Grid.Column="1" Grid.Row="7" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
 
         <TextBlock Text="On" 
                    Grid.Column="2" Grid.Row="0"
                    HorizontalAlignment="Center"
                    Foreground="White" FontSize="16" 
                    Margin="3" />
-        <RadioButton GroupName="On" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="On" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="On" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="On" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="On" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="On" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="On" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <RadioButton GroupName="On" Tag="Blue" 
+                     Checked="ColourSelected"
+                     Grid.Column="2" Grid.Row="1" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="On" Tag="Green" 
+                     Checked="ColourSelected"
+                     Grid.Column="2" Grid.Row="2" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="On" Tag="Yellow" 
+                     Checked="ColourSelected"
+                     Grid.Column="2" Grid.Row="3" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="On" Tag="Orange" 
+                     Checked="ColourSelected"
+                     Grid.Column="2" Grid.Row="4" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="On" Tag="Red" 
+                     Checked="ColourSelected"
+                     Grid.Column="2" Grid.Row="5" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="On" Tag="Purple" 
+                     Checked="ColourSelected"
+                     Grid.Column="2" Grid.Row="6" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="On" Tag="Gray" 
+                     Checked="ColourSelected"
+                     Grid.Column="2" Grid.Row="7" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
 
         <TextBlock Text="Off" 
                    Grid.Column="3" Grid.Row="0"
                    HorizontalAlignment="Center"
                    Foreground="White" FontSize="16" 
                    Margin="3" />
-        <RadioButton GroupName="Off" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="Off" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="Off" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="Off" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="Off" Grid.Column="3" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="Off" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <RadioButton GroupName="Off" Grid.Column="3" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <RadioButton GroupName="Off" Tag="Blue" 
+                     Checked="ColourSelected"
+                     Grid.Column="3" Grid.Row="1" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="Off" Tag="Green" 
+                     Checked="ColourSelected"
+                     Grid.Column="3" Grid.Row="2" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="Off" Tag="Yellow" 
+                     Checked="ColourSelected"
+                     Grid.Column="3" Grid.Row="3" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="Off" Tag="Orange" 
+                     Checked="ColourSelected"
+                     Grid.Column="3" Grid.Row="4" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="Off" Tag="Red" 
+                     Checked="ColourSelected"
+                     Grid.Column="3" Grid.Row="5" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="Off" Tag="Purple" 
+                     Checked="ColourSelected"
+                     Grid.Column="3" Grid.Row="6" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
+        <RadioButton GroupName="Off" Tag="Gray" 
+                     Checked="ColourSelected"
+                     Grid.Column="3" Grid.Row="7" 
+                     Style="{StaticResource ResourceKey=ColourSelector}" />
 
-        <Button Grid.Column="2" Grid.Row="8" Style="{StaticResource ResourceKey=MenuButton}" BorderThickness="0">
+        <Button x:Name="btn_apply"
+                Click="btn_apply_Click"
+                Grid.Column="2" Grid.Row="8" 
+                Style="{StaticResource ResourceKey=MenuButton}" BorderThickness="0">
             <Button.Content>
                 <Image Source="/MetronomeWPF;component/Assets/checkIcon.png" />
             </Button.Content>
         </Button>
-        <Button Grid.Column="3" Grid.Row="8" Style="{StaticResource ResourceKey=MenuButton}" BorderThickness="0">
+        <Button x:Name="btn_discard" 
+                Click="btn_discard_Click"
+                Grid.Column="3" Grid.Row="8" 
+                Style="{StaticResource ResourceKey=MenuButton}" BorderThickness="0">
             <Button.Content>
                 <Image Source="/MetronomeWPF;component/Assets/xIcon.png" />
             </Button.Content>

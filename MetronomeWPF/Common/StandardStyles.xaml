@@ -256,4 +256,15 @@
         <Setter Property="Height" Value="50" />
         <Setter Property="Width" Value="50" />
     </Style>
+    
+    <Style x:Key="ColourSelector" TargetType="RadioButton">
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform ScaleX="3" ScaleY="3"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="RenderTransformOrigin" Value="0.5, 0.5" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
 </ResourceDictionary>

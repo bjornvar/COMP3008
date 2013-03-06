@@ -24,5 +24,17 @@ namespace MetronomeWPF.Views
         {
             InitializeComponent();
         }
+
+        private void ColourSelected(object sender, EventArgs e)
+        {
+        }
+
+        private void btn_apply_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btn_discard_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
