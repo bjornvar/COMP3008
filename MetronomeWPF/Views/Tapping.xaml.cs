@@ -9,18 +9,26 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MetronomeWPF.Views
 {
+    using Components;
+    
+
     /// <summary>
     /// Interaction logic for Tapping.xaml
     /// </summary>
     public partial class Tapping : Page
     {
-        private Frame f = null;
+        private Frame frame = null;
+        private Metronome metro;
+        private Slider tempoSlider;
+        private SoundPlayer sound;
+
         System.DateTime time;
         int bpm = 0;
         double[] beats = null;
@@ -28,20 +36,36 @@ namespace MetronomeWPF.Views
         int beatNum = 0;
         DateTime lastTap;
 
-        public Tapping(Frame frame)
+        public Tapping(Frame f, Metronome m, Slider t)
         {
             InitializeComponent();
-            f = frame;
+            
+            frame = f;
+            metro = m;
+            tempoSlider = t;
+
             time = new DateTime(DateTime.MaxValue.Ticks);
+            sound = new SoundPlayer("Assets/cow-bell.wav");
+
             beatNum = 4;
             beats = new double[beatNum];
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            f.Visibility = System.Windows.Visibility.Hidden;
+            frame.Visibility = System.Windows.Visibility.Hidden;
               //  (Parent as UIElement).Visibility = System.Windows.Visibility.Hidden;
             //Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            int newValue = (bpm > 240) ? 240 : bpm;
+            newValue = (bpm < 20) ? 20 : bpm;
+
+            metro.ChangeTempo(newValue);
+            tempoSlider.Value = newValue;
+            frame.Visibility = System.Windows.Visibility.Hidden;
         }
 
         private void Page_PreviewMouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
@@ -74,8 +98,12 @@ namespace MetronomeWPF.Views
 
             bpm = calculateBPM();
 
-            tempoBox.Text = "" + bpm;
+            String printValue = (bpm > 240) ? "240+" : "" + bpm;
+
+            tempoBox.Text = printValue;
             (sender as Rectangle).Opacity = 0.8;
+
+            sound.Play();
         }
 
         private void Rectangle_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)

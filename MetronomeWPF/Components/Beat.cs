@@ -1,6 +1,6 @@
 ﻿namespace MetronomeWPF.Components
 {
-    class Beat
+    public class Beat
     {
         public BeatState BeatState { get; set; }
         public int BeatNumber { get; private set; }
@@ -12,7 +12,7 @@
         }
     }
 
-    enum BeatState
+    public enum BeatState
     {
         On,
         Off,

@@ -21,12 +21,19 @@
         </Grid.RowDefinitions>
         
         <Image Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="/MetronomeWPF;component/Assets/tap.png" Stretch="Fill" />
-        <TextBlock Name="tempoBox" TextAlignment="Center" Margin="327,94,327,0" TextWrapping="Wrap" Background="White" Grid.Column="1" FontSize="50"><Run Language="en-ca" Text="0"/><LineBreak/><Run Language="en-ca"/></TextBlock>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="800" Grid.RowSpan="3" Stroke="Black" VerticalAlignment="Top" Width="1280" Opacity="0.0" Grid.ColumnSpan="3" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown_1" MouseLeftButtonUp="Rectangle_MouseLeftButtonUp_1" Margin="-10,-10,0,0"/>
+        <TextBlock x:Name="tempoBox" TextAlignment="Center" Margin="318,94,318,0" TextWrapping="Wrap" Background="White" Grid.Column="1" FontSize="50"><Run Language="en-ca" Text="0"/></TextBlock>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="800" Grid.RowSpan="3" Stroke="Black" VerticalAlignment="Top" Width="1280" Opacity="0.0" Grid.ColumnSpan="3" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown_1" MouseLeftButtonUp="Rectangle_MouseLeftButtonUp_1"/>
         <Button Content="Yes" HorizontalAlignment="Stretch" Margin="10,10,105,335" VerticalAlignment="Stretch" Click="Button_Click_1" Grid.Row="1" >
             <Button.Template>
                 <ControlTemplate>
                     <Image Source="/MetronomeWPF;component/Assets/xIcon.png"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Content="Yes" HorizontalAlignment="Stretch" Margin="10,15,105,10" VerticalAlignment="Stretch" Click="Button_Click_2" >
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="/MetronomeWPF;component/Assets/checkIcon.png"/>
                 </ControlTemplate>
             </Button.Template>
         </Button>
