@@ -257,6 +257,70 @@ namespace MetronomeWPF
         }
 
         /// <summary>
+        ///      Changes the system volume for this application based on the GUI 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_speaker_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (SoundVolume.soundMuted == true)
+                {
+                    SoundVolume.Unmute();
+                    // Then set the picture to the "Assets/speaker_icon.png"
+                }
+                else
+                {
+                    SoundVolume.Mute();
+                    // Then set picture to the "Assets/mute_icon.png"
+                    // how?
+                    //(sender as Bu = "Assets/mute_icon.png";
+                }
+            }
+            catch (Exception) { }
+             
+        }        
+
+        /// <summary>
+        ///     Mutes the left system volume for this application based GUI
+        /// </summary>
+        /// <param name="sender"></</param>
+        /// <param name="e"></</param>
+        private void left_Sound(object sender, EventArgs e)
+        {   
+                if (SoundVolume.leftMuted == false)
+                {
+                    SoundVolume.MuteLeft();
+                    // Then set picture to the "Assets/MuteLIcon.png"
+                }
+                else
+                {
+                    SoundVolume.UnmuteLeft();
+                    // Change the picture to "Assets/LIcon.png"
+                }
+        }
+
+        /// <summary>
+        ///     Mutes the rght system volume for this application based GUI
+        /// </summary>
+        /// <param name="sender"></</param>
+        /// <param name="e"></</param>
+        private void right_Sound(object sender, EventArgs e)
+        {
+            if (SoundVolume.rightMuted == false)
+            {
+                SoundVolume.MuteRight();
+                // Then set picture to the "Assets/MuteRIcon.png"
+            }
+            else
+            {
+                SoundVolume.UnmuteRight();
+                // Then set picture to the "Assets/RIcon.png"
+            }
+        }
+
+        /// <summary>
         ///     Handles Light click. Advances Light to next BeatState.
         /// </summary>
         /// <param name="sender">
@@ -316,5 +380,6 @@ namespace MetronomeWPF
             }
             catch (Exception) { }
         }
+
     }
 }
