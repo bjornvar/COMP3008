@@ -280,11 +280,18 @@ namespace MetronomeWPF
             }
             else
             {
-                // Unsigned int with 16 MST bit being left and 16 LSB right
-                //SoundVolume.left = (uint)sld_volume.Value << 16; 
-                //SoundVolume.right = (uint)sld_volume.Value;
                 SoundVolume.SetVolume((uint)sld_volume.Value);
                 SoundVolume.Unmute();
+                if (btn_left.Content.Equals(FindResource("Mute_L")))                
+                    SoundVolume.MuteLeft();                
+                else
+                    SoundVolume.UnmuteLeft();
+
+                if (btn_right.Content.Equals(FindResource("Mute_R")))
+                    SoundVolume.MuteRight();
+                else
+                    SoundVolume.UnmuteRight();
+
                 btn_mute.Content = FindResource("Sound");
             }
         }
@@ -298,14 +305,20 @@ namespace MetronomeWPF
         {
             if (btn_left.Content.Equals(FindResource("L")))
             {
-                SoundVolume.MuteLeft();
-                SoundVolume.SetVolume((uint)sld_volume.Value);
+                if (btn_mute.Content.Equals(FindResource("Sound")))
+                {
+                    SoundVolume.MuteLeft();
+                    //SoundVolume.SetVolume((uint)sld_volume.Value);
+                }
                 btn_left.Content = FindResource("Mute_L");
             }
             else
             {
-                SoundVolume.UnmuteLeft();
-                SoundVolume.SetVolume((uint)sld_volume.Value);
+                if (btn_mute.Content.Equals(FindResource("Sound")))
+                {
+                    SoundVolume.UnmuteLeft();
+                    SoundVolume.SetVolume((uint)sld_volume.Value);
+                }
                 btn_left.Content = FindResource("L");
             }
         }
@@ -319,14 +332,20 @@ namespace MetronomeWPF
         {
             if (btn_right.Content.Equals(FindResource("R")))
             {
-                SoundVolume.MuteRight();
-                SoundVolume.SetVolume((uint)sld_volume.Value);
+                if (btn_mute.Content.Equals(FindResource("Sound")))
+                {
+                    SoundVolume.MuteRight();
+                    //SoundVolume.SetVolume((uint)sld_volume.Value);
+                }
                 btn_right.Content = FindResource("Mute_R");
             }
             else
             {
-                SoundVolume.UnmuteRight();
-                SoundVolume.SetVolume((uint)sld_volume.Value);
+                if (btn_mute.Content.Equals(FindResource("Sound")))
+                {
+                    SoundVolume.UnmuteRight();
+                    //SoundVolume.SetVolume((uint)sld_volume.Value);
+                }                
                 btn_right.Content = FindResource("R");
             }
         }
