@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -16,6 +17,7 @@ using System.Windows.Shapes;
 namespace MetronomeWPF.Views
 {
     using Components;
+    
 
     /// <summary>
     /// Interaction logic for Tapping.xaml
@@ -25,6 +27,8 @@ namespace MetronomeWPF.Views
         private Frame frame = null;
         private Metronome metro;
         private Slider tempoSlider;
+        private SoundPlayer sound;
+
         System.DateTime time;
         int bpm = 0;
         double[] beats = null;
@@ -35,10 +39,14 @@ namespace MetronomeWPF.Views
         public Tapping(Frame f, Metronome m, Slider t)
         {
             InitializeComponent();
+            
             frame = f;
             metro = m;
             tempoSlider = t;
+
             time = new DateTime(DateTime.MaxValue.Ticks);
+            sound = new SoundPlayer("Assets/cow-bell.wav");
+
             beatNum = 4;
             beats = new double[beatNum];
         }
@@ -94,6 +102,8 @@ namespace MetronomeWPF.Views
 
             tempoBox.Text = printValue;
             (sender as Rectangle).Opacity = 0.8;
+
+            sound.Play();
         }
 
         private void Rectangle_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
