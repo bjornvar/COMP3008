@@ -71,7 +71,7 @@ namespace MetronomeWPF.Components
                     }
 
                     if (counter == 0)
-                        StopMetronome();
+                        StopMetronome(true);
 
                     if (counter > 0)
                         counter--;
@@ -115,12 +115,13 @@ namespace MetronomeWPF.Components
         /// <summary>
         ///     Deactivates metronome trigger
         /// </summary>
-        public void StopMetronome()
+        public void StopMetronome(bool sig = false)
         {
             active = false;
             trigger.Change(Timeout.InfiniteTimeSpan, Timeout.InfiniteTimeSpan);
 
-            onStopped(EventArgs.Empty);
+            //sig boolean is to state whether to send the stop signal (only used for limited counts)
+            if (sig) onStopped(EventArgs.Empty);
         }
 
         /// <summary>

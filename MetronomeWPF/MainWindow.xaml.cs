@@ -14,6 +14,7 @@ using System.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Automation.Peers;
 
 namespace MetronomeWPF
 {
@@ -52,8 +53,11 @@ namespace MetronomeWPF
             metronome.ResetMetronome();
             this.Dispatcher.Invoke((Action)(() =>
             {
-                btn_start.Content = "START";
+                //btn_start.Content = "START";
                 //btn_start.Click;
+                ToggleButtonAutomationPeer peer = new ToggleButtonAutomationPeer(btn_start);
+                System.Windows.Automation.Provider.IToggleProvider toggleProvider = peer.GetPattern(PatternInterface.Toggle) as System.Windows.Automation.Provider.IToggleProvider;
+                toggleProvider.Toggle();
                 this.SetLights();
             }));    
         }
