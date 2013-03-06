@@ -29,12 +29,36 @@ namespace MetronomeWPF
         private Metronome metronome;
         private Dictionary<BeatState, SoundPlayer> sounds;
 
+        private ColourSelector colourSelector;
+        private Dictionary<BeatState, Color> colourMap;
+
         private int TempoChangeIntent = 0;
 
         public MainWindow()
         {
             InitializeComponent();
             this.metronome = new Metronome(Tick);
+
+            this.colourMap = new Dictionary<BeatState, Color>();
+            this.colourSelector = new ColourSelector(frm_view);
+            colourMap.Add(BeatState.Emphasized, (Color)ColorConverter.ConvertFromString("Red"));
+            colourMap.Add(BeatState.On, (Color)ColorConverter.ConvertFromString("Green"));
+            colourMap.Add(BeatState.Off, Color.FromRgb(128, 128, 128));
+            this.colourSelector.IsVisibleChanged += 
+                (sender, e) =>
+                {
+                    colourMap.Remove(BeatState.Emphasized);
+                    colourMap.Add(BeatState.Emphasized, colourSelector.Emphasized);
+
+                    colourMap.Remove(BeatState.On);
+                    colourMap.Add(BeatState.On, colourSelector.On);
+
+                    colourMap.Remove(BeatState.Off);
+                    colourMap.Add(BeatState.Off, colourSelector.Off);
+
+                    SetLights();
+                    ResizeLights();
+                };
 
             // Set sounds. Move code?
             sounds = new Dictionary<BeatState, SoundPlayer>();
@@ -96,6 +120,7 @@ namespace MetronomeWPF
             {
                 // Change light
                 (stc_lights.Children[beat.BeatNumber] as Ellipse).Style = (Style)FindResource("CurrentLight");
+                (stc_lights.Children[beat.BeatNumber] as Ellipse).Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
 
                 // Change previous light back to its default Style
                 int last = beat.BeatNumber - 1;
@@ -104,6 +129,9 @@ namespace MetronomeWPF
                     last = stc_lights.Children.Count - 1;
                 }
                 (stc_lights.Children[last] as Ellipse).Style = GetBeatStyle(metronome.beats.ElementAt(last).BeatState);
+                Color c;
+                colourMap.TryGetValue(metronome.beats.ElementAt(last).BeatState, out c);
+                (stc_lights.Children[last] as Ellipse).Fill = new SolidColorBrush(c);
             }
             catch (Exception) { }
         }
@@ -140,6 +168,9 @@ namespace MetronomeWPF
                 Ellipse e = new Ellipse();
                 e.MouseLeftButtonUp += Light_Click;
                 e.Style = GetBeatStyle(b.BeatState);
+                Color c;
+                colourMap.TryGetValue(b.BeatState, out c);
+                e.Fill = new SolidColorBrush(c);
                 stc_lights.Children.Add(e);
             }
         }
@@ -235,8 +266,7 @@ namespace MetronomeWPF
         // Need to finish
         private void btn_settings_Click(object sender, RoutedEventArgs e)
         {
-            //frm_tapping.Content = new Settings();
-            //frm_tapping.Visibility = System.Windows.Visibility.Visible;
+            colourSelector.Show();
         }
 
         // Help Page
