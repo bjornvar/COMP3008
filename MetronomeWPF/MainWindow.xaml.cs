@@ -244,7 +244,7 @@ namespace MetronomeWPF
 
         private void btn_tapping_Click(object sender, RoutedEventArgs e)
         {
-            frm_tapping.Content = new Tapping(frm_tapping);
+            frm_tapping.Content = new Tapping(frm_tapping, metronome, sld_tempo);
             frm_tapping.Visibility = System.Windows.Visibility.Visible;
         }
 

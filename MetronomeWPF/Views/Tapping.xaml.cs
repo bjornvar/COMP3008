@@ -9,39 +9,63 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MetronomeWPF.Views
 {
+    using Components;
+    
+
     /// <summary>
     /// Interaction logic for Tapping.xaml
     /// </summary>
     public partial class Tapping : Page
     {
-        private Frame f = null;
+        private Frame frame = null;
+        private Metronome metro;
+        private Slider tempoSlider;
+        private SoundPlayer sound;
+
         System.DateTime time;
         int bpm = 0;
         double[] beats = null;
         int index = 0;
         int beatNum = 0;
-        DateTime recent;
+        DateTime lastTap;
 
-        public Tapping(Frame frame)
+        public Tapping(Frame f, Metronome m, Slider t)
         {
             InitializeComponent();
-            f = frame;
+            
+            frame = f;
+            metro = m;
+            tempoSlider = t;
+
             time = new DateTime(DateTime.MaxValue.Ticks);
+            sound = new SoundPlayer("Assets/cow-bell.wav");
+
             beatNum = 4;
             beats = new double[beatNum];
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            f.Visibility = System.Windows.Visibility.Hidden;
+            frame.Visibility = System.Windows.Visibility.Hidden;
               //  (Parent as UIElement).Visibility = System.Windows.Visibility.Hidden;
             //Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            int newValue = (bpm > 240) ? 240 : bpm;
+            newValue = (bpm < 20) ? 20 : bpm;
+
+            metro.ChangeTempo(newValue);
+            tempoSlider.Value = newValue;
+            frame.Visibility = System.Windows.Visibility.Hidden;
         }
 
         private void Page_PreviewMouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
@@ -55,20 +79,31 @@ namespace MetronomeWPF.Views
             //refreshing the recent on every click.
             // Need to store the differences in time, not the times themselves, then calculate the bpm
             DateTime temp = DateTime.Now;
-            
-            int sec = temp.Second;
-            double mil = (double)temp.Millisecond / 1000;
 
-            beats[index % beatNum] = (sec + mil) % 60;
+            if (index > 0)
+            {
+                TimeSpan diff = temp.Subtract(lastTap);
+                double total = diff.TotalMilliseconds;
+                if (total > 5000)
+                {
+                    beats = new double[beatNum];
+                    index = 0;
+                }
+                else
+                    beats[(index - 1) % beatNum] = total;
+            }
 
-            
-            
-            bpm = calculateBPM(index % beatNum);
+            lastTap = temp;
+            index++;
 
-            index++;     
+            bpm = calculateBPM();
 
-            MessageBox.Show(""+bpm);
+            String printValue = (bpm > 240) ? "240+" : "" + bpm;
+
+            tempoBox.Text = printValue;
             (sender as Rectangle).Opacity = 0.8;
+
+            sound.Play();
         }
 
         private void Rectangle_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
@@ -76,27 +111,22 @@ namespace MetronomeWPF.Views
             (sender as Rectangle).Opacity = 0.0;
         }
 
-        private int calculateBPM(int startIn)
+        private int calculateBPM()
         {
             double total = 0;
-            double cur = beats[startIn];
             int taps = 0;
-            for (int x = 1; x < beats.Length; x++)
+            for (int x = 0; x < beats.Length; x++)
             {
-                int ind = startIn - x;
-                if (ind < 0) ind = beatNum + ind;
-                double prev = beats[ind];
-                if(prev > 0 && cur > 0)
+                if (beats[x] > 0)
                 {
-                    total += cur - prev;
+                    total += beats[x] / (1000 * 60);
                     taps++;
                 }
-                cur = prev;
             }
             if (taps == 0)
                 return 0;
             else
-                return Convert.ToInt32(total / taps);
+                return Convert.ToInt32(taps / total);
         }
     }
 }
