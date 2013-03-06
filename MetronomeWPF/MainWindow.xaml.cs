@@ -258,39 +258,33 @@ namespace MetronomeWPF
         }
 
         /// <summary>
+        ///     Toggles system volume to on or off. 
+        /// </summary>
+        ///
+        private void toggleMute(object sender, RoutedEventArgs e)
+        {
+            if (btn_mute.Content.Equals(FindResource("Sound")))
+            {
+                SoundVolume.Mute();
+                btn_mute.Content = FindResource("Mute");
+            }
+            else
+            {
+                SoundVolume.left = (uint)sld_volume.Value << 16; // Unsigned int with 16 MST bit being left and 16 LSB right
+                SoundVolume.right = (uint)sld_volume.Value;
+                SoundVolume.Unmute();
+                btn_mute.Content = FindResource("Sound");
+            }
+        }
+
+        /// <summary>
         ///     Changes system volume for this application based on the GUI slider.
         /// </summary>
         ///
         private void sld_volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-           SoundVolume.WaveOutSetVolume(IntPtr.Zero, (uint)(sender as Slider).Value);
+            SoundVolume.WaveOutSetVolume(IntPtr.Zero, (uint)(sender as Slider).Value);
         }
-
-        /// <summary>
-        ///      Changes the system volume for this application based on the GUI 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_sound_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (SoundVolume.soundMuted == true)
-                {
-                    SoundVolume.Unmute();
-                    // Then set the picture to the "Assets/speaker_icon.png"
-                }
-                else
-                {
-                    SoundVolume.Mute();
-                    // Then set picture to the "Assets/mute_icon.png"
-                    // how?
-                    //(sender as Bu = "Assets/mute_icon.png";
-                }
-            }
-            catch (Exception) { }
-             
-        }        
 
         /// <summary>
         ///     Mutes the left system volume for this application based GUI
@@ -298,21 +292,21 @@ namespace MetronomeWPF
         /// <param name="sender"></</param>
         /// <param name="e"></</param>
         private void btn_left_Click(object sender, EventArgs e)
-        {   
-                if (SoundVolume.leftMuted == false)
-                {
-                    SoundVolume.MuteLeft();
-                    // Then set picture to the "Assets/MuteLIcon.png"
-                }
-                else
-                {
-                    SoundVolume.UnmuteLeft();
-                    // Change the picture to "Assets/LIcon.png"
-                }
+        {
+            if (SoundVolume.leftMuted == false)
+            {
+                SoundVolume.MuteLeft();
+                // Then set picture to the "Assets/MuteLIcon.png"
+            }
+            else
+            {
+                SoundVolume.UnmuteLeft();
+                // Change the picture to "Assets/LIcon.png"
+            }
         }
 
         /// <summary>
-        ///     Mutes the rght system volume for this application based GUI
+        ///     Mutes the right system volume for this application based GUI
         /// </summary>
         /// <param name="sender"></</param>
         /// <param name="e"></</param>
