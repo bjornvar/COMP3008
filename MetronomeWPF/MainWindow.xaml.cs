@@ -321,7 +321,7 @@ namespace MetronomeWPF
             // CANNOT CAPTURE THE BUTTONS
             
             // Set the sound volume according to the Slider
-            SoundVolume.WaveOutSetVolume(IntPtr.Zero, (uint)(sender as Slider).Value);
+            SoundVolume.SetVolume((uint)(sender as Slider).Value);
         }
 
         /// <summary>
@@ -393,7 +393,6 @@ namespace MetronomeWPF
                 if (btn_mute.Content.Equals(FindResource("Sound")))
                 {
                     SoundVolume.MuteRight();
-                    //SoundVolume.SetVolume((uint)sld_volume.Value);
                 }
                 btn_right.Content = FindResource("Mute_R");
             }
@@ -402,7 +401,6 @@ namespace MetronomeWPF
                 if (btn_mute.Content.Equals(FindResource("Sound")))
                 {
                     SoundVolume.UnmuteRight();
-                    //SoundVolume.SetVolume((uint)sld_volume.Value);
                 }                
                 btn_right.Content = FindResource("R");
             }
