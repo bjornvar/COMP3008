@@ -293,7 +293,6 @@ namespace MetronomeWPF
                 SoundVolume.WaveOutSetVolume(IntPtr.Zero, total);
                 btn_mute.Content = FindResource("Mute");
             }
-            
         }
         /// <summary>
         ///     Handles Light click. Advances Light to next BeatState.
