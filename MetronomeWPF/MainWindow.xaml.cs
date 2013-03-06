@@ -30,6 +30,7 @@ namespace MetronomeWPF
         private Dictionary<BeatState, SoundPlayer> sounds;
 
         private int TempoChangeIntent = 0;
+        private int countInValue = 0;
 
         public MainWindow()
         {
@@ -40,8 +41,21 @@ namespace MetronomeWPF
             sounds = new Dictionary<BeatState, SoundPlayer>();
             this.SetSound(new SoundPlayer("Assets/click.wav"), BeatState.On);
             this.SetSound(new SoundPlayer("Assets/cow-bell.wav"), BeatState.Emphasized);
+
+            metronome.stopped += new StopEventHandler(metroStopped);
             
             this.InitializeView();
+        }
+
+        private void metroStopped(object sender, EventArgs e)
+        {
+            metronome.ResetMetronome();
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                btn_start.Content = "START";
+                //btn_start.Click;
+                this.SetLights();
+            }));    
         }
 
         /// <summary>
@@ -332,6 +346,26 @@ namespace MetronomeWPF
                 b.Focus();
             }
             catch (Exception) { }
+        }
+
+        private void Count_Up_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(countInValue < 10)
+                countInValue++;
+            
+            txt_count.Text = "" + countInValue;
+
+            metronome.counts = countInValue;
+        }
+
+        private void Count_Down_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (countInValue > 0)
+                countInValue--;
+
+            txt_count.Text = (countInValue == 0) ? "OFF" : "" + countInValue;
+
+            metronome.counts = countInValue;
         }
     }
 }

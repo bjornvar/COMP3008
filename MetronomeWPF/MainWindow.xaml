@@ -4,6 +4,9 @@
         xmlns:helpers="clr-namespace:MetronomeWPF.Helpers"
         Title="Metronome" MinHeight="600" MinWidth="520" Height="800" Width="1280" Style="{StaticResource Main}" SizeChanged="LayoutChanged" 
         x:Name="win_main">
+    <Window.Resources>
+        <helpers:ArithmeticConverter x:Key="AScript"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="150" MinHeight="75" />
@@ -116,6 +119,12 @@
                         Style="{StaticResource TempoButton}" 
                         Click="TempoButton_Click" Height="75" />
             </StackPanel>
+            <TextBox x:Name="txt_count" Grid.Row="2"
+            	HorizontalContentAlignment="Center" 
+            	FontSize="60" Margin="129,42,0,0" RenderTransformOrigin="0.5,0.5" Text="OFF" TextAlignment="Center" Height="88" VerticalAlignment="Top" HorizontalAlignment="Left" Width="126"/>
+            <Button Content="/\" HorizontalAlignment="Left" Margin="82,42,0,0" Grid.Row="2" VerticalAlignment="Top" Width="47" Click="Count_Up_Button_Click" Height="43"/>
+            <Button Content="\/" HorizontalAlignment="Left" Margin="82,85,0,0" Grid.Row="2" VerticalAlignment="Top" Width="47" Click="Count_Down_Button_Click" Height="45"/>
+            <TextBlock Margin="143,10,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="20" HorizontalAlignment="Left" Width="89"><Run Language="en-ca" Text="Count-In"/></TextBlock>
         </Grid>
         
         <Slider x:Name="sld_volume" ValueChanged="sld_volume_ValueChanged"

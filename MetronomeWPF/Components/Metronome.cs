@@ -7,6 +7,8 @@ using System.Windows.Threading;
 
 namespace MetronomeWPF.Components
 {
+    public delegate void StopEventHandler(object sender, EventArgs e);
+
     /// <summary>
     ///     Metronome model with trigger.
     /// </summary>
@@ -16,12 +18,16 @@ namespace MetronomeWPF.Components
         public int Tempo { get; private set; }
         public Beat[] beats { get; private set; }
         private TimeSignature TimeSignature;
+        public int counts { get; set; }        //number of bars to count if the countin. 0 means that the feature is OFF
+        private int counter = -1;
 
         // Control related
         private Timer trigger;
         public bool active { get; private set; }
         private int currentBeat;
         private Mutex currentBeatMutex;
+
+        public event StopEventHandler stopped;
 
         /// <summary>
         ///     Default constructor - creates a time signature 4,4 and tempo 120 bpm metronome.
@@ -45,25 +51,44 @@ namespace MetronomeWPF.Components
 
             currentBeatMutex = new Mutex(false);
 
+            counts = 0;
+
             // Initialize inactive trigger (infinite wait time)
             trigger = new Timer(
                 (source) => 
                 {
-                    // Get beat number (thread-safe)
-                    currentBeatMutex.WaitOne();
-                    int beat = currentBeat++;
-                    currentBeat %= beats.Length;
-                    currentBeatMutex.ReleaseMutex();
+                    if (counter > 0 || counter == -1)
+                    {
+                        // Get beat number (thread-safe)
+                        currentBeatMutex.WaitOne();
+                        int beat = currentBeat++;
+                        currentBeat %= beats.Length;
+                        currentBeatMutex.ReleaseMutex();
 
-                    // Get beat info and set sound
-                    Beat b = beats[beat];
-                    tick(b);
+                        // Get beat info and set sound
+                        Beat b = beats[beat];
+                        tick(b);
+                    }
+
+                    if (counter == 0)
+                        StopMetronome();
+
+                    if (counter > 0)
+                        counter--;
                 },
                 null,
                 Timeout.InfiniteTimeSpan,
                 Timeout.InfiniteTimeSpan
             );
         }
+
+
+        public void onStopped(EventArgs e)
+        {
+            if (stopped != null)
+                stopped(this, e);
+        }
+        
 
         /// <summary>
         ///     Calling this function will make the metronome start from beat one next time it is
@@ -81,6 +106,8 @@ namespace MetronomeWPF.Components
         {
             active = true;
 
+            counter = (counts > 0) ? (counts * 4) + 1 : -1;
+
             // Activate timer
             trigger.Change(TimeSpan.Zero, TimeSpan.FromMilliseconds(60000 / Tempo));
         }
@@ -92,6 +119,8 @@ namespace MetronomeWPF.Components
         {
             active = false;
             trigger.Change(Timeout.InfiniteTimeSpan, Timeout.InfiniteTimeSpan);
+
+            onStopped(EventArgs.Empty);
         }
 
         /// <summary>
