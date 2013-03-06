@@ -19,6 +19,7 @@ namespace MetronomeWPF
 {
     using Components;
     using Views;
+    using Helpers;
 
     /// <summary>
     ///     View / Controller
@@ -27,6 +28,8 @@ namespace MetronomeWPF
     {
         private Metronome metronome;
         private Dictionary<BeatState, SoundPlayer> sounds;
+
+        private int TempoChangeIntent = 0;
 
         public MainWindow()
         {
@@ -61,15 +64,23 @@ namespace MetronomeWPF
         /// </param>
         private void Tick(Beat beat)
         {
-            SoundPlayer sound = this.GetBeatSound(beat);
-
-            if (null != sound)
+            if (TempoChangeIntent > 0)
             {
-                sound.Play();
+                metronome.ChangeTempoLive(TempoChangeIntent);
+                TempoChangeIntent = 0;
             }
+            else
+            {
+                SoundPlayer sound = this.GetBeatSound(beat);
 
-            // Change lights (async)
-            this.Dispatcher.BeginInvoke(new Action<Beat>(AdvanceLights), new object[] { beat });
+                if (null != sound)
+                {
+                    sound.Play();
+                }
+
+                // Change lights (async)
+                this.Dispatcher.BeginInvoke(new Action<Beat>(AdvanceLights), new object[] { beat });
+            }
         }
 
         /// <summary>
@@ -209,6 +220,7 @@ namespace MetronomeWPF
         private void btn_start_Unchecked(object sender, RoutedEventArgs e)
         {
             metronome.StopMetronome();
+            metronome.ResetMetronome();
             (sender as ToggleButton).Content = "START";
             this.SetLights();
         }
@@ -217,8 +229,8 @@ namespace MetronomeWPF
         // Need to finish
         private void btn_settings_Click(object sender, RoutedEventArgs e)
         {
-            //frm_settings.Content = new Settings();
-            //frm_settings.Visibility = System.Windows.Visibility.Visible;
+            //frm_tapping.Content = new Settings();
+            //frm_tapping.Visibility = System.Windows.Visibility.Visible;
         }
 
         // Help Page
@@ -251,11 +263,11 @@ namespace MetronomeWPF
         ///
         private void sld_volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            uint left = (uint) sld_volume.Value << 16;
-            uint right = (uint) sld_volume.Value;
-            uint total = left + right;
+            //uint left = (uint) sld_volume.Value << 16;
+           // uint right = (uint) sld_volume.Value;
+           // uint total = left + right;
 
-            NativeMethods.WaveOutSetVolume(IntPtr.Zero, total);
+           // SoundVolume.WaveOutSetVolume(IntPtr.Zero, total);
         }
 
         /// <summary>
@@ -276,7 +288,8 @@ namespace MetronomeWPF
             try
             {
                 int tempo = Int32.Parse((sender as TextBox).Text);
-                metronome.ChangeTempo(tempo);
+                //metronome.ChangeTempo(tempo);
+                TempoChangeIntent = tempo;
             }
             catch (Exception) { }
         }
@@ -284,6 +297,7 @@ namespace MetronomeWPF
         private void sld_tempo_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Determine whether to start the metronome again on mouseup
+            /*
             bool active = metronome.active;
             (sender as Slider).PreviewMouseLeftButtonUp += (s, events) => 
             {
@@ -296,6 +310,7 @@ namespace MetronomeWPF
             // Stop the metronome
             metronome.StopMetronome();
             SetLights();
+            */
         }
 
         /// <summary>
@@ -318,14 +333,5 @@ namespace MetronomeWPF
             }
             catch (Exception) { }
         }
-    }
-
-    /// <summary>
-    ///     Volume Control
-    /// </summary>
-    static class NativeMethods
-    {
-        [DllImport("winmm.dll", EntryPoint = "waveOutSetVolume")]
-        public static extern int WaveOutSetVolume(IntPtr hwo, uint dwVolume);
     }
 }
