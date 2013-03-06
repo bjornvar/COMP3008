@@ -235,8 +235,8 @@ namespace MetronomeWPF
         // Need to finish
         private void btn_settings_Click(object sender, RoutedEventArgs e)
         {
-            //frm_tapping.Content = new Settings();
-            //frm_tapping.Visibility = System.Windows.Visibility.Visible;
+            frm_view.Content = new Colour();
+            frm_view.Visibility = System.Windows.Visibility.Visible;
         }
 
         // Help Page
