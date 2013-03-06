@@ -270,6 +270,25 @@ namespace MetronomeWPF
         ///
         private void sld_volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            SoundVolume.Unmute();   // Unmute the sound because the slider has changed
+                     
+            // Adjust the sound according to the Left and Right buttons
+            // If they are toggled muted or not
+            /*if (btn_left.Content.Equals(FindResource("Mute_L")))
+                SoundVolume.MuteLeft();
+            else
+                SoundVolume.UnmuteLeft();
+            
+            if (btn_right.Content.Equals(FindResource("Mute_R")))
+                SoundVolume.MuteRight();
+            else
+                SoundVolume.UnmuteRight();
+
+            btn_mute.Content = FindResource("Sound");*/
+            
+            // CANNOT CAPTURE THE BUTTONS
+            
+            // Set the sound volume according to the Slider
             SoundVolume.WaveOutSetVolume(IntPtr.Zero, (uint)(sender as Slider).Value);
         }
 
