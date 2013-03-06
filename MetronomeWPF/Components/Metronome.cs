@@ -81,15 +81,7 @@ namespace MetronomeWPF.Components
                 Timeout.InfiniteTimeSpan
             );
         }
-
-
-        public void onStopped(EventArgs e)
-        {
-            if (stopped != null)
-                stopped(this, e);
-        }
         
-
         /// <summary>
         ///     Calling this function will make the metronome start from beat one next time it is
         ///     started. If the metronome is active, it will restart from the beat one.
@@ -120,8 +112,15 @@ namespace MetronomeWPF.Components
             active = false;
             trigger.Change(Timeout.InfiniteTimeSpan, Timeout.InfiniteTimeSpan);
 
-            //sig boolean is to state whether to send the stop signal (only used for limited counts)
+            //sig boolean is to state whether to send the stop signal (only used for count-in feature)
             if (sig) onStopped(EventArgs.Empty);
+        }
+
+        //Signal for stopping the metronome within the class
+        public void onStopped(EventArgs e)
+        {
+            if (stopped != null)
+                stopped(this, e);
         }
 
         /// <summary>
