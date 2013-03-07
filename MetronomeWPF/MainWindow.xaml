@@ -33,13 +33,15 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            
-            <Button x:Name="btn_sounds"
-                    Grid.Column="0"
-                    Style="{StaticResource MenuButton}">
+
+            <Button x:Name="btn_soundsettings"
+                    Grid.Column="2"
+                    Style="{StaticResource MenuButton}"
+                    Click="btn_sound_settings">
                 <Button.Background>
                     <ImageBrush ImageSource="Assets/bell.png" Stretch="Uniform"/>
                 </Button.Background>
+
             </Button>
             
             <Button x:Name="btn_settings"
@@ -218,6 +220,10 @@
                Visibility="Visible" NavigationUIVisibility="Hidden"
                BorderThickness="2" BorderBrush="White" />
         <Frame x:Name="frm_tapping" 
+               Width="{Binding ElementName=win_main, Path=Width}" 
+               Height="{Binding ElementName=win_main, Path=Height}"
+               Grid.ColumnSpan="2" Grid.RowSpan="5" Visibility="Hidden" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="frm_soundSettings" 
                Width="{Binding ElementName=win_main, Path=Width}" 
                Height="{Binding ElementName=win_main, Path=Height}"
                Grid.ColumnSpan="2" Grid.RowSpan="5" Visibility="Hidden" NavigationUIVisibility="Hidden"/>
