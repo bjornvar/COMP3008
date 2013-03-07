@@ -36,6 +36,8 @@ namespace MetronomeWPF
         private int TempoChangeIntent = 0;
         private int countInValue = 0;
 
+        private Sound_Settings soundSettings;
+
         public string selectedOnSound;
         public string selectedEmphasizedSound;
 
@@ -72,8 +74,10 @@ namespace MetronomeWPF
 
             selectedOnSound = "Assets/click.wav";
             selectedEmphasizedSound = "Assets/cow-bell.wav";
+            soundSettings = new Sound_Settings(frm_soundSettings, this);
+
             metronome.stopped += new StopEventHandler(metroStopped);
-            
+
             this.InitializeView();
         }
 
@@ -290,6 +294,8 @@ namespace MetronomeWPF
             colourSelector.Show();
         }
 
+
+
         private void btn_tapping_Click(object sender, RoutedEventArgs e)
         {
             btn_start.IsChecked = false;
@@ -313,6 +319,13 @@ namespace MetronomeWPF
         ///
         private void sld_volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            uint left = (uint) sld_volume.Value << 16; // Unsigned int with 16 MST bit being left and 16 LSB right
+            uint right = (uint) sld_volume.Value;
+            uint total = left + right;
+            
+            //uint left = (uint) sld_volume.Value << 16;
+           // uint right = (uint) sld_volume.Value;
+           // uint total = left + right;
             SoundVolume.Unmute();   // Unmute the sound because the slider has changed
                      
             // Adjust the sound according to the Left and Right buttons
@@ -483,18 +496,6 @@ namespace MetronomeWPF
             catch (Exception) { }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_sound_settings(object sender, RoutedEventArgs e)
-        {
-            Sound_Settings ss = new Sound_Settings(frm_soundSettings, this);
-            frm_soundSettings.Content = ss.Content;
-            frm_soundSettings.Visibility = System.Windows.Visibility.Visible;
-        }
-
         public void setSound(string sound, BeatState beat)
         {
             this.SetSound(new SoundPlayer(sound), beat);
@@ -524,6 +525,53 @@ namespace MetronomeWPF
             return soundString;
         }
 
+        private void btn_sound_settings(object sender, RoutedEventArgs e)
+        {
+            soundSettings.Show();
+            /*Sound_Settings ss = new Sound_Settings(frm_soundSettings, this);
+            frm_soundSettings.Content = ss.Content;
+            frm_soundSettings.Visibility = System.Windows.Visibility.Visible;*/
+        }
+
+        /*public void setSound(string sound, BeatState beat)
+        {
+            this.SetSound(new SoundPlayer(sound), beat);
+            switch (beat)
+            {
+                case BeatState.On:
+                    selectedOnSound = sound;
+                    break;
+                case BeatState.Emphasized:
+                    selectedEmphasizedSound = sound;
+                    break;
+            }
+        }
+
+        public string getSound(BeatState beat)
+        {
+            string soundString = null;
+            switch (beat)
+            {
+                case BeatState.On:
+                    soundString = selectedOnSound;
+                    break;
+                case BeatState.Emphasized:
+                    soundString = selectedEmphasizedSound;
+                    break;
+            }
+            return soundString;
+        }*/
+
+        public void playsound(BeatState beat)
+        {
+            SoundPlayer sound = this.GetBeatSound(new Beat(1, beat));
+
+            if (null != sound)
+            {
+                sound.Play();
+            }
+
+        }
         private void Count_Up_Button_Click(object sender, RoutedEventArgs e)
         {
             if(countInValue < 10)
@@ -562,6 +610,7 @@ namespace MetronomeWPF
 
         private void txt_count_TextChanged(object sender, TextChangedEventArgs e)
         {
+
 
         }
     }

@@ -24,18 +24,29 @@ namespace MetronomeWPF.Views
     /// </summary>
     public partial class Sound_Settings : Page
     {
-        private Frame frame = null;
-        private MainWindow window = null;
-        public string selectedL, selectedR;
         
-        public Sound_Settings(Frame f, MainWindow w)
+        private MainWindow window = null;
+        
+        public string selectedL, selectedR;
+        public Frame Frame { get; private set; }
+
+        public Sound_Settings(Frame frame, MainWindow w)
         {
+            Frame = frame;
+            window = w; 
             InitializeComponent();
-            frame = f;
+            
             //selectedL = window.selectedOnSound;
             //selectedR = window.selectedEmphasizedSound;
-            window = w; 
             
+            
+        }
+
+        public void Show()
+        {
+            Frame.Content = this;
+            this.Visibility = System.Windows.Visibility.Visible;
+            Frame.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void initializeHighlights()
@@ -49,7 +60,8 @@ namespace MetronomeWPF.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            frame.Visibility = System.Windows.Visibility.Hidden;  
+            this.Visibility = System.Windows.Visibility.Hidden;
+            Frame.Visibility = System.Windows.Visibility.Hidden;  
         }
 
         private void btnClickL(object sender, RoutedEventArgs e)
@@ -61,6 +73,8 @@ namespace MetronomeWPF.Views
             highlight_rectangleL.Visibility = System.Windows.Visibility.Visible;
             selectedL = senderButton.Uid;
             window.setSound(selectedL, BeatState.On);
+            window.playsound(BeatState.On);
+            
         }
 
         private void btnClickR(object sender, RoutedEventArgs e)
@@ -72,6 +86,7 @@ namespace MetronomeWPF.Views
             highlight_rectangleR.Visibility = System.Windows.Visibility.Visible;
             selectedR = senderButton.Uid;
             window.setSound(selectedR, BeatState.Emphasized);
+            window.playsound(BeatState.Emphasized);
         }
 
     }

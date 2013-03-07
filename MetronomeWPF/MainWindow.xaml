@@ -33,6 +33,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
+            
 
             <Button x:Name="btn_soundsettings"
                     Grid.Column="0"
@@ -224,8 +225,10 @@
                Height="{Binding ElementName=win_main, Path=Height}"
                Grid.ColumnSpan="2" Grid.RowSpan="5" Visibility="Hidden" NavigationUIVisibility="Hidden"/>
         <Frame x:Name="frm_soundSettings" 
-               Width="{Binding ElementName=win_main, Path=Width}" 
-               Height="{Binding ElementName=win_main, Path=Height}"
-               Grid.ColumnSpan="2" Grid.RowSpan="5" Visibility="Hidden" NavigationUIVisibility="Hidden"/>
+               HorizontalAlignment="Left" VerticalAlignment="Top" 
+               Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
+               Visibility="Visible" NavigationUIVisibility="Hidden"
+               BorderThickness="2" BorderBrush="White" />
+
     </Grid>
 </Window>
