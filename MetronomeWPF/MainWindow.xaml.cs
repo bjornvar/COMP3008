@@ -90,6 +90,7 @@ namespace MetronomeWPF
                 System.Windows.Automation.Provider.IToggleProvider toggleProvider = peer.GetPattern(PatternInterface.Toggle) as System.Windows.Automation.Provider.IToggleProvider;
                 toggleProvider.Toggle();
                 this.SetLights();
+                this.ResizeLights();
             }));    
         }
 
@@ -538,6 +539,7 @@ namespace MetronomeWPF
             }
 
         }
+
         private void Count_Up_Button_Click(object sender, RoutedEventArgs e)
         {
             if(countInValue < 10)
@@ -578,6 +580,48 @@ namespace MetronomeWPF
         {
 
 
+        }
+
+        private void txt_beats_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                int numBeats = Int32.Parse(txt_beats.Text);
+                if (numBeats < 1)
+                {
+                    txt_beats.Text = 1 + "";
+                }
+                else
+                {
+                    metronome.ChangeTimeSignature(new TimeSignature(numBeats, 4));
+                    SetLights();
+                    ResizeLights();
+                }
+            }
+            catch (Exception) { }
+        }
+
+        private void Beats_Up_Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int numBeats = Int32.Parse(txt_beats.Text);
+                txt_beats.Text = ++numBeats + "";
+            }
+            catch (Exception) { }
+        }
+
+        private void Beats_Down_Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int numBeats = Int32.Parse(txt_beats.Text);
+                if (numBeats > 1)
+                {
+                    txt_beats.Text = --numBeats + "";
+                }
+            }
+            catch (Exception) { }
         }
     }
 }

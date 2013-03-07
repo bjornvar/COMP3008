@@ -111,28 +111,54 @@
                         Style="{StaticResource TempoButton}" 
                         Click="TempoButton_Click" Height="75" />
             </StackPanel>
-
-            <Grid Grid.Column="2" Grid.Row="2">
+            <Grid Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition MinWidth="40" Width="40"/>
-                    <ColumnDefinition MinWidth="100" Width="100"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition MinHeight="20"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                
-                <TextBox x:Name="txt_count" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2"
-            	HorizontalContentAlignment="Center" 
-            	FontSize="28" Text="ALL" TextAlignment="Center" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextChanged="txt_count_TextChanged"/>
-                <Button Content="/\" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Click="Count_Up_Button_Click" VerticalAlignment="Stretch"/>
-                <Button Content="\/" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="1" VerticalAlignment="Stretch" Click="Count_Down_Button_Click"/>
-                <TextBlock Grid.Row="0" Grid.Column="2" TextWrapping="Wrap" Foreground="White" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"><Run Language="en-ca" Text="# of bars:"/></TextBlock>
+                <Grid Grid.Column="0" HorizontalAlignment="Center" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="40" Width="40"/>
+                        <ColumnDefinition MinWidth="100" Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition MinHeight="20"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox x:Name="txt_count" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2"
+            	         HorizontalContentAlignment="Center" 
+            	         FontSize="28" Text="ALL" TextAlignment="Center" 
+                         VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                         TextChanged="txt_count_TextChanged"/>
+                    <Button Content="/\" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Click="Count_Up_Button_Click" VerticalAlignment="Stretch"/>
+                    <Button Content="\/" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" Click="Count_Down_Button_Click"/>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Foreground="White" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="# of bars to play:" />
+                </Grid>
+                <Grid Grid.Column="1" HorizontalAlignment="Center" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="40" Width="40"/>
+                        <ColumnDefinition MinWidth="100" Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition MinHeight="20"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox x:Name="txt_beats" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2"
+            	         HorizontalContentAlignment="Center" 
+            	         FontSize="28" Text="4" TextAlignment="Center" 
+                         VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                         TextChanged="txt_beats_TextChanged"/>
+                    <Button Content="/\" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" 
+                            Click="Beats_Up_Button_Click" VerticalAlignment="Stretch"/>
+                    <Button Content="\/" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" 
+                            Click="Beats_Down_Button_Click"/>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Foreground="White" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="# of beats per bar:"/>
+                </Grid>
             </Grid>
-            
             
             <Grid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3">
                 <Grid.ColumnDefinitions>
