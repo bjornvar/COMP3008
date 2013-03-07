@@ -35,7 +35,7 @@
             </Grid.ColumnDefinitions>
 
             <Button x:Name="btn_soundsettings"
-                    Grid.Column="2"
+                    Grid.Column="0"
                     Style="{StaticResource MenuButton}"
                     Click="btn_sound_settings">
                 <Button.Background>
