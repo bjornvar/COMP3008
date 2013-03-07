@@ -218,17 +218,17 @@
         <Frame x:Name="frm_view" 
                HorizontalAlignment="Center" VerticalAlignment="Top" 
                Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
-               Visibility="Visible" NavigationUIVisibility="Hidden"
+               Visibility="Hidden" NavigationUIVisibility="Hidden"
+               BorderThickness="2" BorderBrush="White" />
+        <Frame x:Name="frm_soundSettings" 
+               HorizontalAlignment="Left" VerticalAlignment="Top" 
+               Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
+               Visibility="Hidden" NavigationUIVisibility="Hidden"
                BorderThickness="2" BorderBrush="White" />
         <Frame x:Name="frm_tapping" 
                Width="{Binding ElementName=win_main, Path=Width}" 
                Height="{Binding ElementName=win_main, Path=Height}"
                Grid.ColumnSpan="2" Grid.RowSpan="5" Visibility="Hidden" NavigationUIVisibility="Hidden"/>
-        <Frame x:Name="frm_soundSettings" 
-               HorizontalAlignment="Left" VerticalAlignment="Top" 
-               Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
-               Visibility="Visible" NavigationUIVisibility="Hidden"
-               BorderThickness="2" BorderBrush="White" />
 
     </Grid>
 </Window>
