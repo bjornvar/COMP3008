@@ -136,17 +136,17 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
+                    <RowDefinition MinHeight="20"/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 
                 <TextBox x:Name="txt_count" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2"
             	HorizontalContentAlignment="Center" 
-            	FontSize="30" Text="OFF" TextAlignment="Center" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextChanged="txt_count_TextChanged"/>
+            	FontSize="28" Text="ALL" TextAlignment="Center" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextChanged="txt_count_TextChanged"/>
                 <Button Content="/\" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Click="Count_Up_Button_Click" VerticalAlignment="Stretch"/>
                 <Button Content="\/" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="1" VerticalAlignment="Stretch" Click="Count_Down_Button_Click"/>
-                <TextBlock Grid.Row="0" Grid.Column="2" TextWrapping="Wrap" Foreground="White" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"><Run Language="en-ca" Text="Count-In"/></TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="2" TextWrapping="Wrap" Foreground="White" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"><Run Language="en-ca" Text="# of bars:"/></TextBlock>
             </Grid>
             
             
