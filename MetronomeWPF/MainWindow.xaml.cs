@@ -501,7 +501,7 @@ namespace MetronomeWPF
             if (countInValue > 0)
                 countInValue--;
 
-            txt_count.Text = (countInValue == 0) ? "OFF" : "" + countInValue;
+            txt_count.Text = (countInValue == 0) ? "ALL" : "" + countInValue;
 
             metronome.counts = countInValue;
         }
