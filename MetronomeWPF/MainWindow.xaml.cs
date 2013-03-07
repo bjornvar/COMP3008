@@ -77,8 +77,6 @@ namespace MetronomeWPF
             metronome.ResetMetronome();
             this.Dispatcher.Invoke((Action)(() =>
             {
-                //btn_start.Content = "START";
-                //btn_start.Click;
                 ToggleButtonAutomationPeer peer = new ToggleButtonAutomationPeer(btn_start);
                 System.Windows.Automation.Provider.IToggleProvider toggleProvider = peer.GetPattern(PatternInterface.Toggle) as System.Windows.Automation.Provider.IToggleProvider;
                 toggleProvider.Toggle();
@@ -483,6 +481,11 @@ namespace MetronomeWPF
             {
                 metronome.StartMetronome();
             }
+        }
+
+        private void txt_count_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

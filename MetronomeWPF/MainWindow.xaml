@@ -121,12 +121,12 @@
                         Click="TempoButton_Click" Height="75" />
             </StackPanel>
 
-            <TextBox x:Name="txt_count" Grid.Row="2"
+            <TextBox x:Name="txt_count" Grid.Row="3"
             	HorizontalContentAlignment="Center" 
-            	FontSize="60" Margin="129,42,0,0" RenderTransformOrigin="0.5,0.5" Text="OFF" TextAlignment="Center" Height="88" VerticalAlignment="Top" HorizontalAlignment="Left" Width="126" Grid.RowSpan="2"/>
-            <Button Content="/\" HorizontalAlignment="Left" Margin="82,42,0,0" Grid.Row="2" VerticalAlignment="Top" Width="47" Click="Count_Up_Button_Click" Height="43" Grid.RowSpan="2"/>
-            <Button Content="\/" HorizontalAlignment="Left" Margin="82,15,0,0" Grid.Row="3" VerticalAlignment="Top" Width="47" Click="Count_Down_Button_Click" Height="45"/>
-            <TextBlock Margin="143,10,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="20" HorizontalAlignment="Left" Width="89"><Run Language="en-ca" Text="Count-In"/></TextBlock>
+            	FontSize="45" Margin="0,3,69,0" RenderTransformOrigin="0.5,0.5" Text="OFF" TextAlignment="Center" Height="64" VerticalAlignment="Top" HorizontalAlignment="Right" Width="126" TextChanged="txt_count_TextChanged"/>
+            <Button Content="/\" HorizontalAlignment="Right" Margin="0,0,195,35" Grid.Row="3" Width="47" Click="Count_Up_Button_Click" Height="32" VerticalAlignment="Bottom"/>
+            <Button Content="\/" HorizontalAlignment="Right" Margin="0,35,195,0" Grid.Row="3" VerticalAlignment="Top" Width="47" Click="Count_Down_Button_Click" Height="32"/>
+            <TextBlock Margin="0,0,106,2" Grid.Row="2" TextWrapping="Wrap" Foreground="White" FontSize="20" HorizontalAlignment="Right" Width="89" Height="27" VerticalAlignment="Bottom"><Run Language="en-ca" Text="Count-In"/></TextBlock>
             <Grid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -137,7 +137,7 @@
                 <Button x:Name="btn_quarter" Tag="1"
                     Grid.Column="0"
                     Style="{StaticResource TimingButton}"
-                    Click="TimingButtonClick">
+                    Click="TimingButtonClick" Margin="4,3,2,3">
                     <Button.Content>
                         <Image Source="Assets/quarter.png" Stretch="Uniform"/>
                     </Button.Content>
