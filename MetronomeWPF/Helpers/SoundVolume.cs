@@ -9,6 +9,9 @@ namespace MetronomeWPF.Helpers
 {
     public static class SoundVolume
     {
+        public static bool rightMuted = false;  // True if the right volume is muted
+        public static bool leftMuted = false;   // True if the left volume is muted
+        public static bool soundMuted = false;  // true if the sound is currently muted
 
         public static uint left;      // Left Volume
         public static uint right;     // Right Volume
@@ -16,22 +19,20 @@ namespace MetronomeWPF.Helpers
         {
             get
             {
-                return (leftMuted ? 0 : (left << 16)) + (rightMuted ? 0 : right);
+                return (leftMuted ? 0 : left) + (rightMuted ? 0 : (right << 16));
             }
         }
 
-        public static bool rightMuted = false;  // True if the right volume is muted
-        public static bool leftMuted = false;   // True if the left volume is muted
-        public static bool soundMuted = false;  // true if the sound is currently muted
+
 
         [DllImport("winmm.dll", EntryPoint = "waveOutSetVolume")]
         public static extern int WaveOutSetVolume(IntPtr hwo, uint dwVolume);
 
         // Public functions
-        public static void SetVolume(int value)
+        public static void SetVolume(uint value)
         {
-            left = (uint)value;
-            right = (uint)value;
+            left  = value;
+            right = value;
 
             WaveOutSetVolume(IntPtr.Zero, total);
             Console.WriteLine("Setting up the sound volume to: " + total);
@@ -51,9 +52,8 @@ namespace MetronomeWPF.Helpers
 
         public static void MuteRight()
         {
-            rightMuted = true; 
-            WaveOutSetVolume(IntPtr.Zero, total);
-                         
+            rightMuted = true;
+            WaveOutSetVolume(IntPtr.Zero, total);              
         }
 
         public static void UnmuteRight()
