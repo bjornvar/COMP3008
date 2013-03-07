@@ -36,6 +36,9 @@ namespace MetronomeWPF
         private int TempoChangeIntent = 0;
         private int countInValue = 0;
 
+        public string selectedOnSound;
+        public string selectedEmphasizedSound;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -67,6 +70,8 @@ namespace MetronomeWPF
             this.SetSound(new SoundPlayer("Assets/click.wav"), BeatState.On);
             this.SetSound(new SoundPlayer("Assets/cow-bell.wav"), BeatState.Emphasized);
 
+            selectedOnSound = "Assets/click.wav";
+            selectedEmphasizedSound = "Assets/cow-bell.wav";
             metronome.stopped += new StopEventHandler(metroStopped);
             
             this.InitializeView();
@@ -285,17 +290,9 @@ namespace MetronomeWPF
             colourSelector.Show();
         }
 
-        // Help Page
-        // Need to finish
-        private void btn_help_Click(object sender, RoutedEventArgs e)
-        {
-            frm_tapping.Content = new Help();           
-            frm_tapping.Visibility = System.Windows.Visibility.Visible;
-        }
-
-
         private void btn_tapping_Click(object sender, RoutedEventArgs e)
         {
+            btn_start.IsChecked = false;
             frm_tapping.Content = new Tapping(frm_tapping, metronome, sld_tempo);
             frm_tapping.Visibility = System.Windows.Visibility.Visible;
         }
@@ -324,7 +321,7 @@ namespace MetronomeWPF
                 SoundVolume.MuteLeft();
             else
                 SoundVolume.UnmuteLeft();
-            
+
             if (btn_right != null && btn_right.Content.Equals(FindResource("Mute_R")))
                 SoundVolume.MuteRight();
             else
@@ -484,6 +481,47 @@ namespace MetronomeWPF
                 b.Focus();
             }
             catch (Exception) { }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_sound_settings(object sender, RoutedEventArgs e)
+        {
+            Sound_Settings ss = new Sound_Settings(frm_soundSettings, this);
+            frm_soundSettings.Content = ss.Content;
+            frm_soundSettings.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        public void setSound(string sound, BeatState beat)
+        {
+            this.SetSound(new SoundPlayer(sound), beat);
+            switch (beat)
+            {
+                case BeatState.On:
+                    selectedOnSound = sound;
+                    break;
+                case BeatState.Emphasized:
+                    selectedEmphasizedSound = sound;
+                    break;
+            }
+        }
+
+        public string getSound(BeatState beat)
+        {
+            string soundString = null;
+            switch(beat)
+            {
+                case BeatState.On: 
+                    soundString = selectedOnSound;
+                    break;
+                case BeatState.Emphasized: 
+                    soundString = selectedEmphasizedSound;
+                    break;
+            }
+            return soundString;
         }
 
         private void Count_Up_Button_Click(object sender, RoutedEventArgs e)
