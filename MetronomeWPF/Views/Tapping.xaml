@@ -8,11 +8,11 @@
 	  Title="Tapping">
       <!-- PreviewMouseLeftButtonDown="Page_PreviewMouseLeftButtonDown_1" -->
 
-    <Grid Background="Black" Opacity="0.7" Width="1280" Height="800">
+    <Grid Background="Black" Opacity="0.7" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition MinWidth="300"/>
             <ColumnDefinition Width="768" />
-            <ColumnDefinition />
+            <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
         
         <Image Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="/MetronomeWPF;component/Assets/tap.png" Stretch="Fill" />
-        <TextBlock x:Name="tempoBox" TextAlignment="Center" Margin="318,94,318,0" TextWrapping="Wrap" Background="White" Grid.Column="1" FontSize="50"><Run Language="en-ca" Text="0"/></TextBlock>
+        <TextBlock x:Name="tempoBox" Width="115" TextAlignment="Center" VerticalAlignment="Stretch" Margin="318,94,318,0" TextWrapping="Wrap" Background="White" Grid.Column="1" FontSize="50"><Run Language="en-ca" Text="0"/></TextBlock>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="800" Grid.RowSpan="3" Stroke="Black" VerticalAlignment="Top" Width="1280" Opacity="0.0" Grid.ColumnSpan="3" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown_1" MouseLeftButtonUp="Rectangle_MouseLeftButtonUp_1"/>
         <Button Content="Yes" HorizontalAlignment="Stretch" Margin="10,10,105,335" VerticalAlignment="Stretch" Click="Button_Click_1" Grid.Row="1" >
             <Button.Template>
