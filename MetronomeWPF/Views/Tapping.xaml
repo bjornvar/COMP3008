@@ -8,7 +8,7 @@
 	  Title="Tapping">
       <!-- PreviewMouseLeftButtonDown="Page_PreviewMouseLeftButtonDown_1" -->
 
-    <Grid Background="Black" Opacity="0.7" >
+    <Grid Background="Black" Opacity="0.9" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="300" Width="350"/>
             <ColumnDefinition MinWidth="700" />
