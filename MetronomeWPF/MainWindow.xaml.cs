@@ -36,6 +36,8 @@ namespace MetronomeWPF
         private int TempoChangeIntent = 0;
         private int countInValue = 0;
 
+        private Sound_Settings soundSettings;
+
         public string selectedOnSound;
         public string selectedEmphasizedSound;
 
@@ -72,6 +74,7 @@ namespace MetronomeWPF
 
             selectedOnSound = "Assets/click.wav";
             selectedEmphasizedSound = "Assets/cow-bell.wav";
+            soundSettings = new Sound_Settings(frm_soundSettings, this);
 
             metronome.stopped += new StopEventHandler(metroStopped);
 
@@ -506,9 +509,10 @@ namespace MetronomeWPF
         /// <param name="e"></param>
         private void btn_sound_settings(object sender, RoutedEventArgs e)
         {
-            Sound_Settings ss = new Sound_Settings(frm_soundSettings, this);
+            soundSettings.Show();
+            /*Sound_Settings ss = new Sound_Settings(frm_soundSettings, this);
             frm_soundSettings.Content = ss.Content;
-            frm_soundSettings.Visibility = System.Windows.Visibility.Visible;
+            frm_soundSettings.Visibility = System.Windows.Visibility.Visible;*/
         }
 
         public void setSound(string sound, BeatState beat)
@@ -540,6 +544,16 @@ namespace MetronomeWPF
             return soundString;
         }
 
+        public void playsound(BeatState beat)
+        {
+            SoundPlayer sound = this.GetBeatSound(new Beat(1, beat));
+
+            if (null != sound)
+            {
+                sound.Play();
+            }
+
+        }
         private void Count_Up_Button_Click(object sender, RoutedEventArgs e)
         {
             if(countInValue < 10)
