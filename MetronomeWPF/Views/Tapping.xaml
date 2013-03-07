@@ -8,10 +8,10 @@
 	  Title="Tapping">
       <!-- PreviewMouseLeftButtonDown="Page_PreviewMouseLeftButtonDown_1" -->
 
-    <Grid Background="Black" Opacity="0.7" Width="1280" Height="800">
+    <Grid Background="Black" Opacity="0.9" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition Width="768" />
+            <ColumnDefinition MinWidth="300" Width="350"/>
+            <ColumnDefinition MinWidth="700" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -21,9 +21,24 @@
         </Grid.RowDefinitions>
         
         <Image Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="/MetronomeWPF;component/Assets/tap.png" Stretch="Fill" />
-        <TextBlock x:Name="tempoBox" TextAlignment="Center" Margin="318,94,318,0" TextWrapping="Wrap" Background="White" Grid.Column="1" FontSize="50"><Run Language="en-ca" Text="0"/></TextBlock>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="800" Grid.RowSpan="3" Stroke="Black" VerticalAlignment="Top" Width="1280" Opacity="0.0" Grid.ColumnSpan="3" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown_1" MouseLeftButtonUp="Rectangle_MouseLeftButtonUp_1"/>
-        <Button Content="Yes" HorizontalAlignment="Stretch" Margin="10,10,105,335" VerticalAlignment="Stretch" Click="Button_Click_1" Grid.Row="1" >
+
+        <Grid Background="Black" Grid.Row="0" Grid.Column="1" Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition MinHeight="70" Height="70"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition MinWidth="200" Width="250"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock x:Name="tempoBox" Grid.Row="1" Grid.Column="0" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Background="White" FontSize="50"><Run Language="en-ca" Text="0"/></TextBlock>
+        </Grid>
+        
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Stretch" Grid.RowSpan="3" Grid.ColumnSpan="3" Stroke="Black" VerticalAlignment="Stretch" Opacity="0.0" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown_1" MouseLeftButtonUp="Rectangle_MouseLeftButtonUp_1"/>
+        <Button Content="No" HorizontalAlignment="Stretch" Margin="10,10,105,335" VerticalAlignment="Top" Click="Button_Click_1" Grid.Row="1" >
             <Button.Template>
                 <ControlTemplate>
                     <Image Source="/MetronomeWPF;component/Assets/xIcon.png"/>

@@ -7,6 +7,9 @@ using System.Windows.Threading;
 
 namespace MetronomeWPF.Components
 {
+    public delegate void StopEventHandler(object sender, EventArgs e);
+    public delegate void DebugEventHandler(object sender, EventArgs e);
+
     /// <summary>
     ///     Metronome model with trigger.
     /// </summary>
@@ -14,14 +17,20 @@ namespace MetronomeWPF.Components
     {
         // Metronome settings
         public int Tempo { get; private set; }
+        private int subdivided = 1;
         public Beat[] beats { get; private set; }
         private TimeSignature TimeSignature;
+        public int counts { get; set; }        //number of bars to count if the countin. 0 means that the feature is OFF
+        public int counter = -1;
 
         // Control related
         private Timer trigger;
         public bool active { get; private set; }
         private int currentBeat;
         private Mutex currentBeatMutex;
+
+        public event StopEventHandler stopped;
+        public event DebugEventHandler debug;
 
         /// <summary>
         ///     Default constructor - creates a time signature 4,4 and tempo 120 bpm metronome.
@@ -45,26 +54,43 @@ namespace MetronomeWPF.Components
 
             currentBeatMutex = new Mutex(false);
 
+            counts = 0;
+
             // Initialize inactive trigger (infinite wait time)
             trigger = new Timer(
                 (source) => 
                 {
+                    if (counter == 0)
+                    {
+                        StopMetronome(true);
+                        return;
+                    }
+
                     // Get beat number (thread-safe)
                     currentBeatMutex.WaitOne();
                     int beat = currentBeat++;
+                        
+                    if(counter > 0)
+                        counter--;
+                        
                     currentBeat %= beats.Length;
                     currentBeatMutex.ReleaseMutex();
 
                     // Get beat info and set sound
                     Beat b = beats[beat];
                     tick(b);
+
+                    onCount(EventArgs.Empty);
+
+                    //if (counter > 0)
+                        // counter--;
                 },
                 null,
                 Timeout.InfiniteTimeSpan,
                 Timeout.InfiniteTimeSpan
             );
         }
-
+        
         /// <summary>
         ///     Calling this function will make the metronome start from beat one next time it is
         ///     started. If the metronome is active, it will restart from the beat one.
@@ -81,6 +107,8 @@ namespace MetronomeWPF.Components
         {
             active = true;
 
+            counter = (counts > 0) ? (counts * 4 * subdivided) : -1;
+
             // Activate timer
             trigger.Change(TimeSpan.Zero, TimeSpan.FromMilliseconds(60000 / Tempo));
         }
@@ -88,10 +116,26 @@ namespace MetronomeWPF.Components
         /// <summary>
         ///     Deactivates metronome trigger
         /// </summary>
-        public void StopMetronome()
+        public void StopMetronome(bool sig = false)
         {
             active = false;
             trigger.Change(Timeout.InfiniteTimeSpan, Timeout.InfiniteTimeSpan);
+
+            //sig boolean is to state whether to send the stop signal (only used for count-in feature)
+            if (sig) onStopped(EventArgs.Empty);
+        }
+
+        //Signal for stopping the metronome within the class
+        public void onStopped(EventArgs e)
+        {
+            if (stopped != null)
+                stopped(this, e);
+        }
+
+        public void onCount(EventArgs e)
+        {
+            if (debug != null)
+                debug(this, e);
         }
 
         /// <summary>
@@ -183,7 +227,42 @@ namespace MetronomeWPF.Components
             {
                 currentBeat = beats.Length - 1;
             }
-            ChangeTempo(tempo);
+            ChangeTempo(tempo * subdivided);
+        }
+
+        /// <summary>
+        ///     Subdivides beats into groups of <paramref name="subdivision"/> parts. If
+        ///     <paramref name="subdivision"/> is 1, only one group will be created.
+        /// </summary>
+        /// <param name="subdivision">
+        ///     Subdivision size
+        /// </param>
+        public void Subdivide(int subdivision)
+        {
+            beats = new Beat[TimeSignature.BeatsPerBar * subdivision];
+
+            for (int i = 0; i < beats.Length; i++)
+            {
+                if ((i % subdivision) == 0)
+                {
+                    if (1 == subdivision && i > 0)
+                    {
+                        beats[i] = new Beat(i, BeatState.On);
+                    }
+                    else
+                    {
+                        beats[i] = new Beat(i, BeatState.Emphasized);
+                    }
+                }
+                else
+                {
+                    beats[i] = new Beat(i, BeatState.On);
+                }
+            }
+
+
+            ChangeTempo(Tempo/this.subdivided * subdivision);
+            subdivided = subdivision;
         }
     }
 }

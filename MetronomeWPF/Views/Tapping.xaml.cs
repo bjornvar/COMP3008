@@ -17,7 +17,6 @@ using System.Windows.Shapes;
 namespace MetronomeWPF.Views
 {
     using Components;
-    
 
     /// <summary>
     /// Interaction logic for Tapping.xaml

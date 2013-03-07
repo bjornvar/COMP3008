@@ -61,6 +61,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -72,11 +73,17 @@
     </ApplicationDefinition>
     <Compile Include="Helpers\ArithmeticConverter.cs" />
     <Compile Include="Helpers\SoundVolume.cs" />
+    <Compile Include="Views\Colour.xaml.cs">
+      <DependentUpon>Colour.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\number_pad.xaml.cs">
       <DependentUpon>number_pad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sound_Settings.xaml.cs">
+      <DependentUpon>Sound_Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tapping.xaml.cs">
       <DependentUpon>Tapping.xaml</DependentUpon>
@@ -103,6 +110,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Colour.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Help.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -110,6 +121,10 @@
     <Page Include="Views\number_pad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sound_Settings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Tapping.xaml">
       <SubType>Designer</SubType>
@@ -146,14 +161,27 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Tap Icon.png" />
+    <Resource Include="Assets\X mark.png" />
     <Resource Include="Assets\xIcon.png" />
+    <Resource Include="Assets\triplet.png" />
     <Resource Include="Assets\checkIcon.png" />
+    <Resource Include="Assets\Bell Icon.png" />
+    <Resource Include="Assets\CheckMark.png" />
+    <Resource Include="Assets\ColourIcon.png" />
     <Content Include="Assets\cow-bell.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Assets\MetronomeIcon.png" />
     <Resource Include="Assets\mute_icon.png" />
     <Resource Include="Assets\sound_icon.png" />
+    <Resource Include="Assets\LIcon.png" />
+    <Resource Include="Assets\RIcon.png" />
+    <Resource Include="Assets\MuteLIcon.png" />
+    <Resource Include="Assets\MuteRIcon.png" />
+    <Resource Include="Assets\eighths.png" />
+    <Resource Include="Assets\sixteenths.png" />
+    <Resource Include="Assets\quarter.png" />
     <Content Include="Assets\stick-low.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
