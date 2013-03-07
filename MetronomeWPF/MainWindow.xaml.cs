@@ -31,6 +31,9 @@ namespace MetronomeWPF
 
         private int TempoChangeIntent = 0;
 
+        public string selectedOnSound;
+        public string selectedEmphasizedSound;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,6 +43,9 @@ namespace MetronomeWPF
             sounds = new Dictionary<BeatState, SoundPlayer>();
             this.SetSound(new SoundPlayer("Assets/click.wav"), BeatState.On);
             this.SetSound(new SoundPlayer("Assets/cow-bell.wav"), BeatState.Emphasized);
+
+            selectedOnSound = "Assets/click.wav";
+            selectedEmphasizedSound = "Assets/cow-bell.wav";
             
             this.InitializeView();
         }
@@ -266,7 +272,7 @@ namespace MetronomeWPF
             uint left = (uint) sld_volume.Value << 16; // Unsigned int with 16 MST bit being left and 16 LSB right
             uint right = (uint) sld_volume.Value;
             uint total = left + right;
-
+            
             //uint left = (uint) sld_volume.Value << 16;
            // uint right = (uint) sld_volume.Value;
            // uint total = left + right;
@@ -356,6 +362,47 @@ namespace MetronomeWPF
                 b.Focus();
             }
             catch (Exception) { }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_sound_settings(object sender, RoutedEventArgs e)
+        {
+            Sound_Settings ss = new Sound_Settings(frm_soundSettings, this);
+            frm_soundSettings.Content = ss.Content;
+            frm_soundSettings.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        public void setSound(string sound, BeatState beat)
+        {
+            this.SetSound(new SoundPlayer(sound), beat);
+            switch (beat)
+            {
+                case BeatState.On:
+                    selectedOnSound = sound;
+                    break;
+                case BeatState.Emphasized:
+                    selectedEmphasizedSound = sound;
+                    break;
+            }
+        }
+
+        public string getSound(BeatState beat)
+        {
+            string soundString = null;
+            switch(beat)
+            {
+                case BeatState.On: 
+                    soundString = selectedOnSound;
+                    break;
+                case BeatState.Emphasized: 
+                    soundString = selectedEmphasizedSound;
+                    break;
+            }
+            return soundString;
         }
     }
 }
