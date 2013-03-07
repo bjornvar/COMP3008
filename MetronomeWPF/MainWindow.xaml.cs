@@ -290,17 +290,9 @@ namespace MetronomeWPF
             colourSelector.Show();
         }
 
-        // Help Page
-        // Need to finish
-        private void btn_help_Click(object sender, RoutedEventArgs e)
-        {
-            frm_tapping.Content = new Help();           
-            frm_tapping.Visibility = System.Windows.Visibility.Visible;
-        }
-
-
         private void btn_tapping_Click(object sender, RoutedEventArgs e)
         {
+            btn_start.IsChecked = false;
             frm_tapping.Content = new Tapping(frm_tapping, metronome, sld_tempo);
             frm_tapping.Visibility = System.Windows.Visibility.Visible;
         }
