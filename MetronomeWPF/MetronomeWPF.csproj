@@ -82,6 +82,9 @@
     <Compile Include="Views\number_pad.xaml.cs">
       <DependentUpon>number_pad.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sound_Settings.xaml.cs">
       <DependentUpon>Sound_Settings.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,10 @@
     <Page Include="Views\number_pad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Sound_Settings.xaml">
       <Generator>MSBuild:Compile</Generator>

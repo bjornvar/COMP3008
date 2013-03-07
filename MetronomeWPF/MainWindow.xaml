@@ -34,27 +34,9 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             
-            <Button x:Name="btn_tapping"
-                    Content=""
-                    Grid.Column="0"
-                    Style="{StaticResource MenuButton}"
-                    Click="btn_tapping_Click">
-                <Button.Background>
-                     <ImageBrush ImageSource="Assets/tap.png" Stretch="Uniform"/>
-                </Button.Background>
-            </Button>
-            
-            <Button x:Name="btn_time_sig"
-                    Grid.Column="1"
-                    Style="{StaticResource MenuButton}" >
-                <Button.Background>
-                    <ImageBrush ImageSource="Assets/34.png" Stretch="Uniform"/>
-                </Button.Background>
-            </Button>
 
-           
-            <Button x:Name="btn_sounds"
-                    Grid.Column="2"
+            <Button x:Name="btn_soundsettings"
+                    Grid.Column="0"
                     Style="{StaticResource MenuButton}"
                     Click="btn_sound_settings">
                 <Button.Background>
@@ -71,7 +53,19 @@
                     <ImageBrush ImageSource="Assets/ColourIcon.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
+
+            <Button x:Name="btn_tapping"
+                    Content=""
+                    Grid.Column="2"
+                    Style="{StaticResource MenuButton}"
+                    Click="btn_tapping_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="Assets/tap.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
         </Grid>
+        
+        <Gri        </Grid>
         
         <Grid Grid.Column="0" Grid.Row="1" Margin="0,10,0,0">
             <Grid.ColumnDefinitions>
@@ -233,9 +227,10 @@
                Height="{Binding ElementName=win_main, Path=Height}"
                Grid.ColumnSpan="2" Grid.RowSpan="5" Visibility="Hidden" NavigationUIVisibility="Hidden"/>
         <Frame x:Name="frm_soundSettings" 
-               HorizontalAlignment="Center" VerticalAlignment="Top" 
-               Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
-               Visibility="Visible" NavigationUIVisibility="Hidden"
+               Width="{Binding
+ ElementName=eV              dth}" 
+               Height="{Binding ElementName=win_main, Path=Height}"bility="Visible" NavigationUIVisibility="Hidden"
+               BorderThickness="2" BorderBrush="White" />
                BorderThickness="2" BorderBrush="White" />
     </Grid>
 </Window>
