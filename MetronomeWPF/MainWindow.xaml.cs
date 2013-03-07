@@ -496,18 +496,6 @@ namespace MetronomeWPF
             catch (Exception) { }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_sound_settings(object sender, RoutedEventArgs e)
-        {
-            Sound_Settings ss = new Sound_Settings(frm_soundSettings, this);
-            frm_soundSettings.Content = ss.Content;
-            frm_soundSettings.Visibility = System.Windows.Visibility.Visible;
-        }
-
         public void setSound(string sound, BeatState beat)
         {
             this.SetSound(new SoundPlayer(sound), beat);
@@ -537,13 +525,15 @@ namespace MetronomeWPF
             return soundString;
         }
 
+        private void btn_sound_settings(object sender, RoutedEventArgs e)
+        {
             soundSettings.Show();
             /*Sound_Settings ss = new Sound_Settings(frm_soundSettings, this);
             frm_soundSettings.Content = ss.Content;
             frm_soundSettings.Visibility = System.Windows.Visibility.Visible;*/
         }
 
-        public void setSound(string sound, BeatState beat)
+        /*public void setSound(string sound, BeatState beat)
         {
             this.SetSound(new SoundPlayer(sound), beat);
             switch (beat)
@@ -570,7 +560,7 @@ namespace MetronomeWPF
                     break;
             }
             return soundString;
-        }
+        }*/
 
         public void playsound(BeatState beat)
         {
