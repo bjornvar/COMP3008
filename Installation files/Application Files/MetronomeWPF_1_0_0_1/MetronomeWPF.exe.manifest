@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="MetronomeWPF.exe" version="1.0.0.1" publicKeyToken="4ccff32e5d1d2d1d" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="MetronomeWPF" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="MetronomeWPF.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MetronomeWPF.exe" size="1271808">
+      <assemblyIdentity name="MetronomeWPF" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>27uoF5LkIYlY9J30DlxbOs/5oIPgsL+hWDAipit0tw4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="Assets\block.wav" size="17360">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>55Yh+N6IW1KS6d/nN6CBFyTmyzi3DMH1qnhfeiJr7ns=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Assets\click.wav" size="10156">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>AyNc9MsADdkbh+AyOcOotVseDz+mP9PBadBfx/eC3fE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Assets\cow-bell.wav" size="26552">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>+ZEgw2iTBYn2g+8rLgMEpXrN920/cNGuQUFr/hyVH1Q=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Assets\seiko-high.wav" size="13966">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>S7khwRrRwvukYI9hJ5XTk+XHCXr0oXUbRvhTDV4yRwU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Assets\seiko-low.wav" size="13966">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Oeal8WlbBT1jF/ODwFQ4hpx2wMCqYKdcikWppDjjbcw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Assets\stick-high.wav" size="28018">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>iEqyg4ZSbWiN6M3PJUKB1KtRSuy2yOoXHFw7+bIdYbw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Assets\stick-low.wav" size="27958">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>kLpUKfqIXZUT/+IKTYPMTeGRwJB2HE36wxp7vp8R0iE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MetronomeWPF.exe.config" size="144">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>jLCHdLm7v47ACsSCc72IOp8bA051ZvlIJCmYB91hk5o=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=BVAARDAL\Bjorn" issuerKeyHash="62a55f4f681e0b72efe5d631604ce4db73e9bd60" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>V+C+dDFPgYFyKhJahGnjovwcgGiQ/JwKsFrTiqGEeo8=</DigestValue></Reference></SignedInfo><SignatureValue>c2j8bIUeNfqoJ0eKXayQkcPrDvUuHv1DYHxebU/BY76MXKTBE9nSvqfItJ8t9YTLhwtzpuxsI0V/o2qYizzIej2DhduM6cz1ulg1CwGz3FlAXJCmtDwI1wg3AnfeYWwYpN3UML4yPKQAE32DqOAzAyhrH1lBDsi1Nt07E/YLy1A=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>zQkRuAUZXR62gUPpnM5Zj1I28EvFO/VR+fBZMN6LllvWwZrEceXOA85MQFdNmrronQkZUvJbeTti7Zy+oz3dIMfJqnrtFwC+JWH6yU/+06P9jk8kd4OFFZyquXh9pNK11KcfRBRM4tRSsTuLrUWUkkqFrMQixtOksd/WHWGqiw8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="8f7a84a18ad35ab00a9cfc9068801cfca2e369845a122a7281814f3174bee057" Description="" Url=""><as:assemblyIdentity name="MetronomeWPF.exe" version="1.0.0.1" publicKeyToken="4ccff32e5d1d2d1d" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=BVAARDAL\Bjorn</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>E6evcEBXcJAjdOaaZ2jjC4UDDULd80oy3TP+stpogsk=</DigestValue></Reference></SignedInfo><SignatureValue>yPZMCHFV0cxuJwMgVaUw6EoagD6ZoDtknvs/VWUw6yOTtA0PHJ22M3kwLVUkzweXSuMRDkjaF7OdPAZzU96NxT4WyQXPsmJzCNuzkg2A4+aCiuTuW8s6+P5UYqCka03vijrLMiXmW4fr/ULTP9Njf1yRyzE65JJhg10T7f5gx/k=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>zQkRuAUZXR62gUPpnM5Zj1I28EvFO/VR+fBZMN6LllvWwZrEceXOA85MQFdNmrronQkZUvJbeTti7Zy+oz3dIMfJqnrtFwC+JWH6yU/+06P9jk8kd4OFFZyquXh9pNK11KcfRBRM4tRSsTuLrUWUkkqFrMQixtOksd/WHWGqiw8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB0TCCATqgAwIBAgIQH4uEegDHypZJxIdg86lzdzANBgkqhkiG9w0BAQsFADAnMSUwIwYDVQQDHhwAQgBWAEEAQQBSAEQAQQBMAFwAQgBqAG8AcgBuMB4XDTEzMDMwNzE2NTAwNVoXDTE0MDMwNzIyNTAwNVowJzElMCMGA1UEAx4cAEIAVgBBAEEAUgBEAEEATABcAEIAagBvAHIAbjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzQkRuAUZXR62gUPpnM5Zj1I28EvFO/VR+fBZMN6LllvWwZrEceXOA85MQFdNmrronQkZUvJbeTti7Zy+oz3dIMfJqnrtFwC+JWH6yU/+06P9jk8kd4OFFZyquXh9pNK11KcfRBRM4tRSsTuLrUWUkkqFrMQixtOksd/WHWGqiw8CAwEAATANBgkqhkiG9w0BAQsFAAOBgQBN9wNy7XVrUSlxdq1BDlNL/Fs/hH/9zNh7y1Pb705Z7+9TCS0tYPSDqbuWJUWdba1Hlyhw2dZYhxZpNXNsjy4L0BKCc3WRsnzZ0l1sYUPKQ6QVvkERAH1HRpNQy2UAf1heZLLpyR3LShU7gEZdIUj3MdeCSLNsyLjX/YoEF5Iw/w==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

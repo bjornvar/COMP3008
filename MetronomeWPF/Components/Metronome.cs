@@ -107,7 +107,7 @@ namespace MetronomeWPF.Components
         {
             active = true;
 
-            counter = (counts > 0) ? (counts * 4 * subdivided) : -1;
+            counter = (counts > 0) ? (counts * TimeSignature.BeatsPerBar * subdivided) : -1;
 
             // Activate timer
             trigger.Change(TimeSpan.Zero, TimeSpan.FromMilliseconds(60000 / Tempo));

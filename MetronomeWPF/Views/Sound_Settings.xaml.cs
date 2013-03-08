@@ -49,6 +49,12 @@ namespace MetronomeWPF.Views
             Frame.Visibility = System.Windows.Visibility.Visible;
         }
 
+        public void Hide()
+        {
+            this.Visibility = System.Windows.Visibility.Hidden;
+            Frame.Visibility = System.Windows.Visibility.Hidden;
+        }
+
         private void initializeHighlights()
         {
             Button senderButton = null;  

@@ -90,6 +90,7 @@ namespace MetronomeWPF
                 System.Windows.Automation.Provider.IToggleProvider toggleProvider = peer.GetPattern(PatternInterface.Toggle) as System.Windows.Automation.Provider.IToggleProvider;
                 toggleProvider.Toggle();
                 this.SetLights();
+                this.ResizeLights();
             }));    
         }
 
@@ -291,7 +292,14 @@ namespace MetronomeWPF
         // Need to finish
         private void btn_settings_Click(object sender, RoutedEventArgs e)
         {
-            colourSelector.Show();
+            if (colourSelector.Frame.IsVisible)
+            {
+                colourSelector.Hide();
+            }
+            else
+            {
+                colourSelector.Show();
+            }
         }
 
 
@@ -450,7 +458,6 @@ namespace MetronomeWPF
             try
             {
                 int tempo = Int32.Parse((sender as TextBox).Text);
-                //metronome.ChangeTempo(tempo);
                 TempoChangeIntent = tempo;
             }
             catch (Exception) { }
@@ -458,21 +465,6 @@ namespace MetronomeWPF
 
         private void sld_tempo_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // Determine whether to start the metronome again on mouseup
-            /*
-            bool active = metronome.active;
-            (sender as Slider).PreviewMouseLeftButtonUp += (s, events) => 
-            {
-                if (active)
-                {
-                    metronome.StartMetronome();
-                }
-            };
-
-            // Stop the metronome
-            metronome.StopMetronome();
-            SetLights();
-            */
         }
 
         /// <summary>
@@ -527,40 +519,15 @@ namespace MetronomeWPF
 
         private void btn_sound_settings(object sender, RoutedEventArgs e)
         {
-            soundSettings.Show();
-            /*Sound_Settings ss = new Sound_Settings(frm_soundSettings, this);
-            frm_soundSettings.Content = ss.Content;
-            frm_soundSettings.Visibility = System.Windows.Visibility.Visible;*/
-        }
-
-        /*public void setSound(string sound, BeatState beat)
-        {
-            this.SetSound(new SoundPlayer(sound), beat);
-            switch (beat)
+            if (soundSettings.Frame.IsVisible)
             {
-                case BeatState.On:
-                    selectedOnSound = sound;
-                    break;
-                case BeatState.Emphasized:
-                    selectedEmphasizedSound = sound;
-                    break;
+                soundSettings.Hide();
+            }
+            else
+            {
+                soundSettings.Show();
             }
         }
-
-        public string getSound(BeatState beat)
-        {
-            string soundString = null;
-            switch (beat)
-            {
-                case BeatState.On:
-                    soundString = selectedOnSound;
-                    break;
-                case BeatState.Emphasized:
-                    soundString = selectedEmphasizedSound;
-                    break;
-            }
-            return soundString;
-        }*/
 
         public void playsound(BeatState beat)
         {
@@ -572,6 +539,7 @@ namespace MetronomeWPF
             }
 
         }
+
         private void Count_Up_Button_Click(object sender, RoutedEventArgs e)
         {
             if(countInValue < 10)
@@ -612,6 +580,48 @@ namespace MetronomeWPF
         {
 
 
+        }
+
+        private void txt_beats_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                int numBeats = Int32.Parse(txt_beats.Text);
+                if (numBeats < 1)
+                {
+                    txt_beats.Text = 1 + "";
+                }
+                else
+                {
+                    metronome.ChangeTimeSignature(new TimeSignature(numBeats, 4));
+                    SetLights();
+                    ResizeLights();
+                }
+            }
+            catch (Exception) { }
+        }
+
+        private void Beats_Up_Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int numBeats = Int32.Parse(txt_beats.Text);
+                txt_beats.Text = ++numBeats + "";
+            }
+            catch (Exception) { }
+        }
+
+        private void Beats_Down_Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int numBeats = Int32.Parse(txt_beats.Text);
+                if (numBeats > 1)
+                {
+                    txt_beats.Text = --numBeats + "";
+                }
+            }
+            catch (Exception) { }
         }
     }
 }
