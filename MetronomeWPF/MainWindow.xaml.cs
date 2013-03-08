@@ -593,6 +593,12 @@ namespace MetronomeWPF
                 }
                 else
                 {
+                    // Set the maximum number of beats to 25
+                    if (numBeats > 25)
+                    {
+                        txt_beats.Text = 25 + "";
+                    }
+
                     metronome.ChangeTimeSignature(new TimeSignature(numBeats, 4));
                     SetLights();
                     ResizeLights();
