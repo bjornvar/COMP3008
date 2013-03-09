@@ -1,0 +1,78 @@
+﻿<Page x:Class="MetronomeWPF.Views.Sound_Settings"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+       HorizontalAlignment="Stretch" Title="Sound_Settings"  Background="#292929">
+
+    <Grid Width="360" Height="505" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="59*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Button Content="Yes" HorizontalAlignment="Center" Margin="-25,-11,281,461" VerticalAlignment="Center" Click="Button_Click" Width="104" Height="55" Grid.ColumnSpan="2" >
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="/MetronomeWPF;component/Assets/checkIcon.png"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <TextBlock TextAlignment="Center" TextWrapping="Wrap"  Foreground="White" FontSize="30" Width="50" Height="40" Margin="0,0,210,465" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"><Run Language="en-ca" Text="On"/></TextBlock>
+        <TextBlock TextAlignment="Center" TextWrapping="Wrap"  Foreground="White" FontSize="30" Height="40" Margin="192.75,-1,1,466" Width="160" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"><Run Language="en-ca" Text="Emphasized"/></TextBlock>
+
+        <Button x:Name="block" Margin="4,44,206,411" Click="btnClickL" x:Uid="Assets/block.wav" Height="50" Foreground="#FFF9F9F9" Background="{x:Null}" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2">
+            <TextBlock x:Name="blockText" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" FontSize="30" Width="150" Height="50" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="en-ca" Text="Block"/></TextBlock>
+        </Button>
+        <Button x:Name="click" Margin="4,118,206,337" Click="btnClickL"  x:Uid="Assets/click.wav" Height="50" Foreground="#FFF9F9F9" Background="{x:Null}" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2">
+            <TextBlock x:Name="clickText" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" FontSize="30" Width="150" Foreground="#FFF9F9F9" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="en-ca" Text="Click"/></TextBlock>
+        </Button>
+        <Button x:Name="cowBell" Margin="4,188,206,267" Click="btnClickL"  x:Uid="Assets/cow-bell.wav" Height="50" Foreground="#FFF9F9F9" Background="{x:Null}" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" >
+            <TextBlock x:Name="cowbellText" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" FontSize="30" Width="150" Height="50" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="en-ca" Text="Cow Bell"/></TextBlock>
+        </Button>
+        <Button x:Name="seikohigh" Margin="4,255,206,200" Click="btnClickL"  x:Uid="Assets/seiko-high.wav" Foreground="#FFF9F9F9" Background="{x:Null}" Height="50" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2">
+            <TextBlock x:Name="seikohighText" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" FontSize="30" Width="150" Height="50" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="en-ca" Text="Seiko-High"/></TextBlock>
+        </Button>
+        <Button x:Name="seikolow" Margin="4,321,206,134" Click="btnClickL"  x:Uid="Assets/seiko-low.wav" Height="50" Foreground="#FFF9F9F9" Background="{x:Null}" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2">
+            <TextBlock x:Name="seikolowText" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" FontSize="30" Width="150" Height="50" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="en-ca" Text="Seiko-Low"/></TextBlock>
+        </Button>
+        <Button x:Name="stickhigh" Margin="4,384,206,71" Click="btnClickL"  x:Uid="Assets/stick-high.wav" Height="50" Foreground="#FFF9F9F9" Background="{x:Null}" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2">
+            <TextBlock x:Name="stickhighText" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" FontSize="30" Width="150" Foreground="#FFF9F9F9" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="en-ca" Text="Stick-High"/></TextBlock>
+        </Button>
+        <Button x:Name="sticklow" Margin="4,445,206,10" Click="btnClickL"  x:Uid="Assets/stick-low.wav" Height="50" Foreground="#FFF9F9F9" Background="{x:Null}" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2">
+            <TextBlock x:Name="sticklowText" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" FontSize="30" Width="150" Foreground="#FFF9F9F9" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="en-ca" Text="Stick-Low"/></TextBlock>
+        </Button>
+
+        <Button x:Name="block1" Margin="199.75,44,4,411" Click="btnClickR" x:Uid="Assets/block.wav" Height="50" Foreground="#FFF9F9F9" Background="{x:Null}" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+            <TextBlock x:Name="blockText1" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" FontSize="30" Width="150" Height="50" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="en-ca" Text="Block"/></TextBlock>
+        </Button>
+        <Button x:Name="click1" Margin="199.75,118,4,337" Click="btnClickR"  x:Uid="Assets/click.wav" Height="50" Foreground="#FFF9F9F9" Background="{x:Null}" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+            <TextBlock x:Name="clickText1" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" FontSize="30" Width="150" Foreground="#FFF9F9F9" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="en-ca" Text="Click"/></TextBlock>
+        </Button>
+        <Button x:Name="cowBell1" Margin="199.75,188,4,267" Click="btnClickR"  x:Uid="Assets/cow-bell.wav" Height="50" Foreground="#FFF9F9F9" Background="{x:Null}" RenderTransformOrigin="0.752,0.478" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" >
+            <TextBlock x:Name="cowbellText1" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" FontSize="30" Width="150" Height="50" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="en-ca" Text="Cow Bell"/></TextBlock>
+        </Button>
+        <Button x:Name="seikohigh1" Margin="199.75,255,4,200" Click="btnClickR"  x:Uid="Assets/seiko-high.wav" Foreground="#FFF9F9F9" Background="{x:Null}" Height="50" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+            <TextBlock x:Name="seikohighText1" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" FontSize="30" Width="150" Height="50" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="en-ca" Text="Seiko-High"/></TextBlock>
+        </Button>
+        <Button x:Name="seikolow1" Margin="199.75,321,4,134" Click="btnClickR"  x:Uid="Assets/seiko-low.wav" Height="50" Foreground="#FFF9F9F9" Background="{x:Null}" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+            <TextBlock x:Name="seikolowText1" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" FontSize="30" Width="150" Height="50" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="en-ca" Text="Seiko-Low"/></TextBlock>
+        </Button>
+        <Button x:Name="stickhigh1" Margin="199.75,384,4,71" Click="btnClickR"  x:Uid="Assets/stick-high.wav" Height="50" Foreground="#FFF9F9F9" Background="{x:Null}" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+            <TextBlock x:Name="stickhighText1" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" FontSize="30" Width="150" Foreground="#FFF9F9F9" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="en-ca" Text="Stick-High"/></TextBlock>
+        </Button>
+        <Button x:Name="sticklow1" Margin="199.75,445,4,10" Click="btnClickR"  x:Uid="Assets/stick-low.wav" Height="50" Foreground="#FFF9F9F9" Background="{x:Null}" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+            <TextBlock x:Name="sticklowText1" TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" FontSize="30" Width="150" Foreground="#FFF9F9F9" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="en-ca" Text="Stick-Low"/></TextBlock>
+        </Button>
+
+        <Rectangle x:Name="highlight_rectangleL"  Stroke="#FF0FEA19" StrokeThickness="5"  x:Uid="" Visibility="Hidden" Width="152" Height="50" Margin="0,40,205,410" Grid.ColumnSpan="2"/>
+        <Rectangle x:Name="highlight_rectangleR"  Stroke="#FF0FEA19" StrokeThickness="5"  x:Uid="" Visibility="Hidden" Width="152" Height="50" Margin="200,40,-1,406" Grid.Column="1"/>
+    </Grid>
+    
+    
+</Page>

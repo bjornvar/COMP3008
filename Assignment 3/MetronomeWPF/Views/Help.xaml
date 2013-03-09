@@ -1,0 +1,70 @@
+﻿<Page x:Class="MetronomeWPF.Views.Help"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+	  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+	  Title="Help">
+
+    <Grid Background="Black" Opacity="0.4">
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="100" MinHeight="75" />
+            <RowDefinition Height="0*"/>
+            <RowDefinition Height="0*"/>
+            <RowDefinition Height="0*" />
+            <RowDefinition Height="0*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="1" Margin="0,0,0,0.2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button
+                    Grid.Column="0" Grid.Row="0"
+                    Style="{StaticResource MenuButton}" >
+                <Button.Background>
+                    <ImageBrush ImageSource="/MetronomeWPF;component/Assets/tap.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+
+            <Button
+                    Grid.Column="1"
+                    Style="{StaticResource MenuButton}" >
+                <Button.Background>
+                    <ImageBrush ImageSource="/MetronomeWPF;component/Assets/34.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+
+            <Button
+                    Grid.Column="2"
+                    Style="{StaticResource MenuButton}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/MetronomeWPF;component/Assets/bell.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+
+            <Button
+                    Grid.Column="3"
+                    Style="{StaticResource MenuButton}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/MetronomeWPF;component/Assets/gear.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+
+            <Button
+                    Grid.Column="4"
+                    Style="{StaticResource MenuButton}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/MetronomeWPF;component/Assets/MetronomeIcon.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+
+    </Grid>
+</Page>

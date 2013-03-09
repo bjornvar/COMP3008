@@ -593,10 +593,10 @@ namespace MetronomeWPF
                 }
                 else
                 {
-                    // Set the maximum number of beats to 12
-                    if (numBeats > 12)
+                    // Set the maximum number of beats to 10
+                    if (numBeats > 10)
                     {
-                        txt_beats.Text = 12 + "";
+                        txt_beats.Text = 10 + "";
                     }
 
                     metronome.ChangeTimeSignature(new TimeSignature(numBeats, 4));
